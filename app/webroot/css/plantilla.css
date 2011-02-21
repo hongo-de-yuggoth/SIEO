@@ -162,6 +162,12 @@ form.searchform input.button {
 	vertical-align: top;
 }
 
+select
+{
+	font: 10px Verdana, Tahoma, Helvetica, sans-serif;
+	color: #666666; 
+}
+
 /***********************
 	  LAYOUT
 ************************/
@@ -360,8 +366,17 @@ form.searchform input.button {
 .green {	color: #9EC630; }
 .gray  {	color: #BFBFBF; }
 
+
+/*******************/
+/* Estilos Propios */
+/*******************/
 .texto-error
 {
 	color: #3D5E74;
-	font-size: 12px;
+	font-size: 11px;
+}
+
+.subtitulo
+{
+	font-weight: bold;
 }

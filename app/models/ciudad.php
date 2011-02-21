@@ -23,5 +23,14 @@ class Ciudad extends AppModel {
 			),
 		),
 	);
+	
+	var $belongsTo = array
+	(
+		'Departamento' => array
+		(
+			'className' => 'Departamento',
+			'foreignKey' => 'id_depto'
+		)
+	);
 }
 ?>

@@ -13,5 +13,6 @@ class Religion extends AppModel {
 			),
 		),
 	);
+	
 }
 ?>

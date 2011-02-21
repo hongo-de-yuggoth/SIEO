@@ -1,4 +1,3 @@
-<?php ?>
 <?php echo $this->Html->docType(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -63,13 +62,9 @@
 		</div>
 			
 		<div id="main">	
-			//--------------------------------------------------------------------------
-			
 			<?php
 			echo $content_for_layout;
 			?>
-			
-			//--------------------------------------------------------------------------
 		</div>
 		
 	<!-- content-wrap ends here -->		

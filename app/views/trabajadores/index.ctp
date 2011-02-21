@@ -9,8 +9,6 @@
 			<th><?php echo $this->Paginator->sort('numero_doc');?></th>
 			<th><?php echo $this->Paginator->sort('sexo');?></th>
 			<th><?php echo $this->Paginator->sort('direccion');?></th>
-			<th><?php echo $this->Paginator->sort('id_ciudad');?></th>
-			<th><?php echo $this->Paginator->sort('id_depto');?></th>
 			<th><?php echo $this->Paginator->sort('id_localidad');?></th>
 			<th><?php echo $this->Paginator->sort('telefono_familiar');?></th>
 			<th><?php echo $this->Paginator->sort('telefono_personal');?></th>
@@ -42,8 +40,6 @@
 		<td><?php echo $trabajador['Trabajador']['numero_doc']; ?>&nbsp;</td>
 		<td><?php echo $trabajador['Trabajador']['sexo']; ?>&nbsp;</td>
 		<td><?php echo $trabajador['Trabajador']['direccion']; ?>&nbsp;</td>
-		<td><?php echo $trabajador['Trabajador']['id_ciudad']; ?>&nbsp;</td>
-		<td><?php echo $trabajador['Trabajador']['id_depto']; ?>&nbsp;</td>
 		<td><?php echo $trabajador['Trabajador']['id_localidad']; ?>&nbsp;</td>
 		<td><?php echo $trabajador['Trabajador']['telefono_familiar']; ?>&nbsp;</td>
 		<td><?php echo $trabajador['Trabajador']['telefono_personal']; ?>&nbsp;</td>

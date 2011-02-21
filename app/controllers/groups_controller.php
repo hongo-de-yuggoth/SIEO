@@ -75,7 +75,7 @@ class GroupsController extends AppController {
 	// ACOs Creator :: TEMPORAL
 	//--------------------------
 	
-	function build_acl()
+	/*function build_acl()
 	{
 		if (!Configure::read('debug')) {
 			return $this->_stop();
@@ -160,7 +160,8 @@ class GroupsController extends AppController {
 			debug($log);
 		}
 	}
-
+	*/
+	/*
 	function _getClassMethods($ctrlName = null) {
 		App::import('Controller', $ctrlName);
 		if (strlen(strstr($ctrlName, '.')) > 0) {
@@ -218,6 +219,7 @@ class GroupsController extends AppController {
 			return false;
 		}
 	}
+	*/
 
 /**
  * Get the names of the plugin controllers ...
@@ -229,7 +231,7 @@ class GroupsController extends AppController {
  * @return array of plugin names.
  *
  */
-	function _getPluginControllerNames() {
+	/*function _getPluginControllerNames() {
 		App::import('Core', 'File', 'Folder');
 		$paths = Configure::getInstance();
 		$folder =& new Folder();
@@ -268,7 +270,7 @@ class GroupsController extends AppController {
 		}
 		return $arr;
 	}
-	
+	*/
 	//--------------------------------------------------------------------------
 }
 ?>
