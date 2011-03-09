@@ -14,6 +14,11 @@ class Trabajador extends AppModel
 		(
 			'className' => 'Religion',
 			'foreignKey' => 'id_religion'
+		),
+		'Localidad' => array
+		(
+			'className' => 'Localidad',
+			'foreignKey' => 'id_localidad'
 		)
 	);
 }

@@ -70,10 +70,10 @@ img.float-left {
 a img {  
   border: 2px solid #568EB6;
 }
-a:hover img {  
-  border: 2px solid #CCC !important; /* IE fix*/
+/*a:hover img {  
+border: 2px solid #CCC !important; /* IE fix
   border: 2px solid #568EB6;
-}
+}*/
 
 code {
   margin: 5px 0;
@@ -118,7 +118,16 @@ input {
 	font: normal 1em Verdana, sans-serif;
 	color:#777;
 }
-textarea {
+
+textarea
+{
+	padding: 2px;
+	border:1px solid #bbb;
+	font: normal 1em Verdana, sans-serif;
+	color:#777;
+}
+
+/*textarea {
 	width:300px;
 	padding:2px;
 	font: normal 1em Verdana, sans-serif;
@@ -126,7 +135,8 @@ textarea {
 	height:100px;
 	display:block;
 	color:#777;
-}
+}*/
+
 input.button { 
 	margin: 0; 
 	font: bold 1em Arial, Sans-serif; 
@@ -379,4 +389,22 @@ select
 .subtitulo
 {
 	font-weight: bold;
+}
+
+.linea
+{
+	background-color: #878787;
+}
+
+fieldset
+{
+	padding:7px;
+	margin:3px 0px 3px 0px;
+}
+
+legend
+{
+	border-style:solid;
+	border-width:1px;
+	background-color:#E6E8E5
 }

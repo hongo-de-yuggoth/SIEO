@@ -1,6 +1,6 @@
 <?php
-class EmpresasController extends AppController {
-
+class EmpresasController extends AppController
+{
 	var $name = 'Empresas';
 
 	function index() {
@@ -57,6 +57,35 @@ class EmpresasController extends AppController {
 		}
 		$this->Session->setFlash(__('Empresa was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	//--------------------------------------------------------------------------
+	
+	function datos($id_empresa)
+	{
+		$this->autoLayout = false;
+		$this->autoRender = false;
+		$empresa = $this->Empresa->find('first', array
+		(
+			'conditions' => array('Empresa.id' => $id_empresa),
+			'fields' => array
+			(
+				'Empresa.arp',
+				'Ciudad.nombre',
+				'Departamento.nombre'
+			)
+		));
+		if ( !empty($empresa) )
+		{
+			return json_encode(array
+			(
+				'resultado' => true,
+				'ciudad' => $empresa['Ciudad']['nombre'],
+				'departamento' => $empresa['Departamento']['nombre'],
+				'arp' => $empresa['Empresa']['arp']
+			));
+		}
+		return json_encode(array('resultado' => false));
 	}
 }
 ?>

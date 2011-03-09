@@ -34,31 +34,12 @@
 	<!-- content-wrap starts here -->
 	<div id="content-wrap">		
 		<div id="sidebar" >							
-				
-			<h1>Sidebar Menu</h1>
+			<h1>Menu</h1>
 			<ul class="sidemenu">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="#TemplateInfo">Template Info</a></li>
-				<li><a href="#SampleTags">Sample Tags</a></li>
-				<li><a href="http://www.styleshout.com/">More Free Templates</a></li>
-				<li><a href="http://www.4templates.com/?aff=ealigam">Premium Templates</a></li>					
+				<li><a href="/listallegadas">Lista de Llegada</a></li>
+				<li><a href="/trabajadores/registrar">Registrar Trabajador</a></li>
+				<li><a href="/hcos/crear">Crear HCO</a></li>
 			</ul>		
-				
-			<h1>Site Partners</h1>
-			<ul class="sidemenu">
-				<li><a href="http://www.dreamhost.com/r.cgi?287326">Dreamhost</a></li>
-				<li><a href="http://www.4templates.com/?aff=ealigam">4templates</a></li>
-				<li><a href="http://store.templatemonster.com/?aff=ealigam">TemplateMonster</a></li>	
-				<li><a href="http://www.fotolia.com/partner/114283">Fotolia.com</a></li>									
-				<li><a href="http://www.text-link-ads.com/?ref=40025">Text Link Ads</a></li> 		
-			</ul>		
-			
-			<h1>Wise Words</h1>
-			<p>&quot;Men are disturbed, not by the things that happen,
-			but by their opinion of the things that happen.&quot;</p>		
-				
-			<p class="align-right">- Epictetus</p>					
-		
 		</div>
 			
 		<div id="main">	

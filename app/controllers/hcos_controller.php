@@ -1,6 +1,6 @@
 <?php
-class HcosController extends AppController {
-
+class HcosController extends AppController
+{
 	var $name = 'Hcos';
 
 	function index() {
@@ -62,5 +62,14 @@ class HcosController extends AppController {
 		$this->Session->setFlash(__('Hco was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	//--------------------------------------------------------------------------
+	
+	function crear()
+	{
+		
+	}
+	
+	//--------------------------------------------------------------------------
 }
 ?>

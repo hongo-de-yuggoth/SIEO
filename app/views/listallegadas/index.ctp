@@ -36,7 +36,7 @@ echo $this->Html->script(array
 			
 			<tr align="left">
 				<td width="160" class="subtitulo">Número del documento:</td>
-				<td width="120"><input size="9" maxlength="10" id="numero_documento_buscar"></td>
+				<td width="120"><input size="9" maxlength="15" id="numero_documento_buscar"></td>
 				<td style="padding-left: 5px;"><input type="button" value="Buscar trabajador" id="boton_buscar_trabajador"></td>
 			</tr>
 			
