@@ -27,11 +27,18 @@ class TrabajadoresController extends AppController
 	{
 		if ( !empty($this->data) )
 		{
+			if ( $this->data['Trabajador']['id_depto'] == '33' )
+			{
+				$this->data['Trabajador']['id_ciudad'] = 0;
+			}
+			else
+			{
+				$this->data['Trabajador']['id_localidad'] = 0;
+			}
 			$this->Trabajador->create();
 			if ( $this->Trabajador->save($this->data) )
 			{
 				// Seteamos valores de info de exito...
-				
 			}
 			else
 			{
@@ -139,6 +146,11 @@ class TrabajadoresController extends AppController
 				'Trabajador.numero_doc' => $numero_doc
 			)
 		));
+		
+		//-----
+		//print_r($trabajador);exit();
+		//-----
+		
 		if ( !empty($trabajador) )
 		{
 			$empresa = $this->Empresa->find('first', array
@@ -158,22 +170,24 @@ class TrabajadoresController extends AppController
 				$input_sexo = '<input id="sexo_trabajador" type="hidden" value="'.$this->sexo[$trabajador['Trabajador']['sexo']].'"/>';
 				$input_tipo_documento = '<input id="tipo_documento_trabajador" type="hidden" value="'.$trabajador['Trabajador']['tipo_doc'].'"/>';
 				$input_numero_documento = '<input id="numero_documento_trabajador" type="hidden" value="'.$trabajador['Trabajador']['numero_doc'].'"/>';
-				$input_direccion = '<input id="direccion_trabajador" type="hidden" value="'.$trabajador['Trabajador']['direccion'].'"/>';
+				$input_direccion = '<input id="direccion_trabajador" type="hidden" value="'.htmlspecialchars($trabajador['Trabajador']['direccion']).'"/>';
+				$input_localidad = '<input id="localidad_trabajador" type="hidden" value="'.$trabajador['Localidad']['id'].'"/>';
+				$input_ciudad_trabajador = '<input id="ciudad_trabajador" type="hidden" value="'.$trabajador['Ciudad']['id'].'"/>';
+				$input_departamento_trabajador = '<input id="departamento_trabajador" type="hidden" value="'.$trabajador['Departamento']['id'].'"/>';
 				$input_telefono_familiar = '<input id="telefono_familiar_trabajador" type="hidden" value="'.$trabajador['Trabajador']['telefono_familiar'].'"/>';
 				$input_telefono_personal = '<input id="telefono_personal_trabajador" type="hidden" value="'.$trabajador['Trabajador']['telefono_personal'].'"/>';
 				$input_fecha_nacimiento = '<input id="fecha_nacimiento_trabajador" type="hidden" value="'.$trabajador['Trabajador']['fecha_nacimiento'].'"/>';
-				$input_cargo_desempenar = '<input id="cargo_desempenar_trabajador" type="hidden" value="'.$trabajador['Trabajador']['cargo_desempenar'].'"/>';
+				$input_cargo_desempenar = '<input id="cargo_desempenar_trabajador" type="hidden" value="'.htmlspecialchars($trabajador['Trabajador']['cargo_desempenar']).'"/>';
 				$input_nivel_estudio = '<input id="nivel_estudio_trabajador" type="hidden" value="'.$trabajador['Trabajador']['nivel_estudio'].'"/>';
 				$input_eps = '<input id="eps_trabajador" type="hidden" value="'.$trabajador['Trabajador']['eps'].'"/>';
 				$input_estado_civil = '<input id="estado_civil_trabajador" type="hidden" value="'.$trabajador['Trabajador']['estado_civil'].'"/>';
 				$input_cant_hijos = '<input id="cant_hijos_trabajador" type="hidden" value="'.$trabajador['Trabajador']['cant_hijos'].'"/>';
 				$input_nombre_foto = '<input id="nombre_foto_trabajador" type="hidden" value="'.$trabajador['Trabajador']['nombre_foto'].'"/>';
 				$input_empresa = '<input id="empresa_trabajador" type="hidden" value="'.$trabajador['Empresa']['nombre'].'"/>';
+				$input_ciudad_empresa = '<input id="ciudad_empresa" type="hidden" value="'.$empresa['Ciudad']['nombre'].'"/>';
+				$input_departamento_empresa = '<input id="departamento_empresa" type="hidden" value="'.$empresa['Departamento']['nombre'].'"/>';
 				$input_arp = '<input id="arp_trabajador" type="hidden" value="'.$trabajador['Empresa']['arp'].'"/>';
 				$input_religion = '<input id="practica_religiosa_trabajador" type="hidden" value="'.$trabajador['Religion']['nombre'].'"/>';
-				$input_localidad = '<input id="localidad_trabajador" type="hidden" value="'.$trabajador['Localidad']['nombre'].'"/>';
-				$input_ciudad = '<input id="ciudad_trabajador" type="hidden" value="'.$empresa['Ciudad']['nombre'].'"/>';
-				$input_departamento = '<input id="departamento_trabajador" type="hidden" value="'.$empresa['Departamento']['nombre'].'"/>';
 				$input_encontro ='<input id="encontro" type="hidden" value="true"/>';
 				return	$input_id.
 							$input_nombre.
@@ -194,8 +208,10 @@ class TrabajadoresController extends AppController
 							$input_arp.
 							$input_religion.
 							$input_localidad.
-							$input_ciudad.
-							$input_departamento.
+							$input_ciudad_empresa.
+							$input_departamento_empresa.
+							$input_ciudad_trabajador.
+							$input_departamento_trabajador.
 							$input_encontro;
 			}
 			else
@@ -236,6 +252,8 @@ class TrabajadoresController extends AppController
 	function registrar()
 	{
 		$this->loadModel('Empresa');
+		$this->loadModel('Departamento');
+		$this->loadModel('Ciudad');
 		$this->loadModel('Localidad');
 		$this->loadModel('Religion');
 		$empresas = $this->Empresa->find('all', array
@@ -245,6 +263,31 @@ class TrabajadoresController extends AppController
 				'Empresa.id',
 				'Empresa.nombre'
 			),
+			'order' => 'Empresa.nombre',
+			'recursive' => 0
+		));
+		$departamentos = $this->Departamento->find('all', array
+		(
+			'fields' => array
+			(
+				'Departamento.id',
+				'Departamento.nombre'
+			),
+			'order' => 'Departamento.nombre',
+			'recursive' => 0
+		));
+		$ciudades = $this->Ciudad->find('all', array
+		(
+			'fields' => array
+			(
+				'Ciudad.id',
+				'Ciudad.nombre'
+			),
+			'conditions' => array
+			(
+				'Ciudad.id_depto' => $departamentos[0]['Departamento']['id']
+			),
+			'order' => 'Ciudad.nombre',
 			'recursive' => 0
 		));
 		$localidades = $this->Localidad->find('all', array
@@ -254,6 +297,7 @@ class TrabajadoresController extends AppController
 				'Localidad.id',
 				'Localidad.nombre'
 			),
+			'order' => 'Localidad.nombre',
 			'recursive' => 0
 		));
 		$religiones = $this->Religion->find('all', array
@@ -263,14 +307,28 @@ class TrabajadoresController extends AppController
 				'Religion.id',
 				'Religion.nombre'
 			),
+			'order' => 'Religion.nombre',
 			'recursive' => 0
 		));
-		if ( !empty($empresas) && !empty($localidades) && !empty($religiones) )
+		if ( !empty($empresas) && !empty($departamentos) && !empty($ciudades) &&
+				!empty($localidades) && !empty($religiones) )
 		{
 			$empresas_options = '';
 			foreach ( $empresas as $empresa )
 			{
 				$empresas_options .= '<option value="'.$empresa['Empresa']['id'].'">'.$empresa['Empresa']['nombre'].'</option>';
+			}
+			
+			$departamentos_options = '';
+			foreach ( $departamentos as $departamento )
+			{
+				$departamentos_options .= '<option value="'.$departamento['Departamento']['id'].'">'.$departamento['Departamento']['nombre'].'</option>';
+			}
+			
+			$ciudades_options = '';
+			foreach ( $ciudades as $ciudad )
+			{
+				$ciudades_options .= '<option value="'.$ciudad['Ciudad']['id'].'">'.$ciudad['Ciudad']['nombre'].'</option>';
 			}
 			
 			$localidades_options = '';
@@ -285,6 +343,8 @@ class TrabajadoresController extends AppController
 				$religiones_options .= '<option value="'.$religion['Religion']['id'].'">'.$religion['Religion']['nombre'].'</option>';
 			}
 			$this->set('empresas', $empresas_options);
+			$this->set('departamentos', utf8_encode($departamentos_options));
+			$this->set('ciudades', utf8_encode($ciudades_options));
 			$this->set('localidades', $localidades_options);
 			$this->set('religiones', $religiones_options);
 		}

@@ -67,7 +67,67 @@ class HcosController extends AppController
 	
 	function crear()
 	{
-		
+		$this->loadModel('Departamento');
+		$this->loadModel('Ciudad');
+		$this->loadModel('Localidad');
+		$departamentos = $this->Departamento->find('all', array
+		(
+			'fields' => array
+			(
+				'Departamento.id',
+				'Departamento.nombre'
+			),
+			'order' => 'Departamento.nombre',
+			'recursive' => 0
+		));
+		$ciudades = $this->Ciudad->find('all', array
+		(
+			'fields' => array
+			(
+				'Ciudad.id',
+				'Ciudad.nombre'
+			),
+			'conditions' => array
+			(
+				'Ciudad.id_depto' => $departamentos[0]['Departamento']['id']
+			),
+			'order' => 'Ciudad.nombre',
+			'recursive' => 0
+		));
+		$localidades = $this->Localidad->find('all', array
+		(
+			'fields' => array
+			(
+				'Localidad.id',
+				'Localidad.nombre'
+			),
+			'order' => 'Localidad.nombre',
+			'recursive' => 0
+		));
+		if ( !empty($departamentos) && !empty($ciudades) && !empty($localidades) )
+		{
+			$departamentos_options = '';
+			foreach ( $departamentos as $departamento )
+			{
+				$departamentos_options .= '<option value="'.$departamento['Departamento']['id'].'">'.$departamento['Departamento']['nombre'].'</option>';
+			}
+			
+			$ciudades_options = '';
+			foreach ( $ciudades as $ciudad )
+			{
+				$ciudades_options .= '<option value="'.$ciudad['Ciudad']['id'].'">'.$ciudad['Ciudad']['nombre'].'</option>';
+			}
+			
+			$localidades_options = '';
+			foreach ( $localidades as $localidad )
+			{
+				$localidades_options .= '<option value="'.$localidad['Localidad']['id'].'">'.$localidad['Localidad']['nombre'].'</option>';
+			}
+			
+			$this->set('departamentos', utf8_encode($departamentos_options));
+			$this->set('ciudades', utf8_encode($ciudades_options));
+			$this->set('localidades', $localidades_options);
+		}
 	}
 	
 	//--------------------------------------------------------------------------

@@ -10,6 +10,7 @@ echo $this->Html->script(array
 	'validaciones',
 	'datepicker/lang/es',
 	'datepicker/datepicker',
+	'departamentos.municipios.localidades',
 	'hco/crear'
 ));
 ?>
@@ -80,11 +81,11 @@ echo $this->Html->script(array
 			<div>
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
-						<td width="54" class="subtitulo">Ciudad:</td>
-						<td width="100"><div id="ciudad"></div></td>
-						<td width="30"></td>
 						<td width="100" class="subtitulo">Departamento:</td>
-						<td width="*"><div id="departamento"></div></td>
+						<td width="125"><div id="departamento"></div></td>
+						<td width="30"></td>
+						<td id="etiqueta_ciudad_localidad_empresa" width="54" class="subtitulo">Municipio:</td>
+						<td width="*"><div id="ciudad"></div></td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -106,10 +107,27 @@ echo $this->Html->script(array
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
 						<td width="72" class="subtitulo">Direcci&oacute;n:</td>
-						<td width="310"><div id="direccion"></div></td>
-						<td width="15"></td>
-						<td width="71" class="subtitulo">Localidad:</td>
-						<td width="*"><div id="localidad"></div></td>
+						<td width="*"><div id="direccion"></div></td>
+					</tr>
+				</tbody></table>
+				<table width="100%"><tbody>
+					<tr valign="top" align="left">
+						<td width="105" class="subtitulo">Departamento:</td>
+						<td width="130">
+							<select id="sel_departamento_trabajador" name="data[Trabajador][id_depto]" style="width:130px;">
+							<?php echo $departamentos; ?>
+							</select>
+						</td>
+						<td width="30"></td>
+						<td id="etiqueta_ciudad_localidad" width="75" class="subtitulo">Localidad	:</td>
+						<td width="*">
+							<div id="ciudades" style="display:none;"><select id="sel_ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:215px;">
+							<?php echo $ciudades; ?>
+							</select></div>
+							<div id="localidades" style="display:block;"><select id="sel_localidad_trabajador" name="data[Trabajador][id_localidad]" style="width:140px;">
+							<?php echo $localidades; ?>
+							</select></div>
+						</td>
 					</tr>
 				</tbody></table>
 				<table width="100%"><tbody>

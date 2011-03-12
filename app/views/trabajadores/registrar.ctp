@@ -10,6 +10,7 @@ echo $this->Html->script(array
 	'validaciones',
 	'datepicker/lang/es',
 	'datepicker/datepicker',
+	'departamentos.municipios.localidades',
 	'trabajadores/registrar'
 ));
 ?>
@@ -71,7 +72,7 @@ echo $this->Html->script(array
 					
 					<tr align="left">
 						<td class='subtitulo' width='90'>Foto:</td>
-						<td width="*" colspan="5"><input id="archivo_foto" name='data[File][archivo_foto]' type='file' /></td>
+						<td width="*" colspan="5"><input id="archivo_foto" name='data[File][archivo_foto]' type='file' disabled="disabled" /></td>
 					</tr>
 					<tr><td height="10" colspan="6"></td></tr>
 					<tr><td height="1" colspan="6" class="linea"></td></tr>
@@ -97,11 +98,11 @@ echo $this->Html->script(array
 			<div>
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
-						<td width="54" class="subtitulo">Ciudad:</td>
-						<td width="100"><div id="ciudad"></div></td>
+						<td width="105" class="subtitulo">Departamento:</td>
+						<td width="130"><div id="departamento"></div></td>
 						<td width="30"></td>
-						<td width="100" class="subtitulo">Departamento:</td>
-						<td width="*"><div id="departamento"></div></td>
+						<td width="75" class="subtitulo">Municipio:</td>
+						<td width="*"><div id="ciudad"></div></td>
 					</tr>
 					<tr><td height="10" colspan="5"></td></tr>
 					<tr><td height="1" colspan="5" class="linea"></td></tr>
@@ -113,21 +114,37 @@ echo $this->Html->script(array
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
 						<td width="72" class="subtitulo">Direcci&oacute;n:</td>
-						<td width="100"><input id="direccion" name="data[Trabajador][direccion]" size="33" maxlength="100" /></td>
-						<td width="15"></td>
-						<td width="71" class="subtitulo">Localidad:</td>
-						<td width="*">
-							<select id="localidad" name="data[Trabajador][id_localidad]" style="width:140px;">
-								<?php echo $localidades; ?>
-							</select>
-						</td>
+						<td width="*"><input id="direccion" name="data[Trabajador][direccion]" size="65" maxlength="100" /></td>
 					</tr>
 					<tr>
 						<td width='72'></td>
-						<td width="*" colspan="4" class="texto-error" valign="top"><div id="error_direccion" style="display:none;" /></td>
+						<td width="*" class="texto-error" valign="top"><div id="error_direccion" style="display:none;" /></td>
 					</tr>
 					
-					<tr><td height="10" colspan="5"></td></tr>
+					<tr><td height="10" colspan="2"></td></tr>
+				</tbody></table>
+			</div>
+			
+			<div>
+				<table width="100%"><tbody>
+					<tr valign="top" align="left">
+						<td width="105" class="subtitulo">Departamento:</td>
+						<td width="130">
+							<select id="departamento_trabajador" name="data[Trabajador][id_depto]" style="width:130px;">
+							<?php echo $departamentos; ?>
+							</select>
+						</td>
+						<td width="30"></td>
+						<td id="etiqueta_ciudad_localidad" width="75" class="subtitulo">Localidad:</td>
+						<td width="*">
+							<div id="ciudades" style="display:none;"><select id="ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:215px;">
+							<?php echo $ciudades; ?>
+							</select></div>
+							<div id="localidades" style="display:block;"><select id="localidad_trabajador" name="data[Trabajador][id_localidad]" style="width:140px;">
+							<?php echo $localidades; ?>
+							</select></div>
+						</td>
+					</tr>
 				</tbody></table>
 			</div>
 			

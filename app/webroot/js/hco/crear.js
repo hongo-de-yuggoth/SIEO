@@ -69,6 +69,21 @@ jQuery(document).ready(function()
 
 	//--------------------------------------------------------------------------
 	// Programamos los diferentes EVENTOS.
+	
+	jQuery('#sel_departamento_trabajador').change(function()
+	{
+		depto_seleccionado = jQuery('#sel_departamento_trabajador').val();
+		if ( depto_seleccionado == '33' )
+		{
+			jQuery('#etiqueta_ciudad_localidad').html('Localidad:');
+			cargar_localidades('ciudades', 'localidades');
+		}
+		else
+		{
+			jQuery('#etiqueta_ciudad_localidad').html('Municipio:');
+			cargar_ciudades(depto_seleccionado, 'sel_ciudad_trabajador', 'ciudades', 'localidades');
+		}
+	});
 
 	// Configuramos el botón para buscar trabajadores.
 	jQuery('#boton_buscar_trabajador').click(function()
@@ -95,13 +110,12 @@ jQuery(document).ready(function()
 						// Leemos datos de inputs hidden y ponemos info en el cuadro de
 						// info del trabajador.
 						jQuery('#empresa').html(jQuery('#empresa_trabajador').val());
-						jQuery('#ciudad').html(jQuery('#ciudad_trabajador').val());
-						jQuery('#departamento').html(jQuery('#departamento_trabajador').val());
+						jQuery('#ciudad').html(jQuery('#ciudad_empresa').val());
+						jQuery('#departamento').html(jQuery('#departamento_empresa').val());
 						jQuery('#nombre').html(jQuery('#nombre_trabajador').val());
 						jQuery('#documento').html(jQuery('#tipo_documento_trabajador').val()+' '+jQuery('#numero_documento_trabajador').val());
 						jQuery('#sexo').html(jQuery('#sexo_trabajador').val());
 						jQuery('#direccion').html(jQuery('#direccion_trabajador').val());
-						jQuery('#localidad').html(jQuery('#localidad_trabajador').val());
 						jQuery('#telefono_familiar').html(jQuery('#telefono_familiar_trabajador').val());
 						jQuery('#telefono_personal').html(jQuery('#telefono_personal_trabajador').val());
 						jQuery('#fecha_nacimiento').html(jQuery('#fecha_nacimiento_trabajador').val());
@@ -112,6 +126,21 @@ jQuery(document).ready(function()
 						jQuery('#estado_civil').html(jQuery('#estado_civil_trabajador').val());
 						jQuery('#cant_hijos').html(jQuery('#cant_hijos_trabajador').val());
 						jQuery('#practica_religiosa').html(jQuery('#practica_religiosa_trabajador').val());
+						
+						depto_seleccionado = jQuery('#departamento_trabajador').val();
+						jQuery('#sel_departamento_trabajador [value='+depto_seleccionado+']').attr('selected', 'selected');
+						if ( depto_seleccionado == '33' )
+						{
+							jQuery('#etiqueta_ciudad_localidad').html('Localidad:');
+							jQuery('#sel_localidad_trabajador [value='+jQuery('#localidad_trabajador').val()+']').attr('selected', 'selected');
+							cargar_localidades('ciudades', 'localidades');
+						}
+						else
+						{
+							jQuery('#etiqueta_ciudad_localidad').html('Municipio:');
+							cargar_ciudades(depto_seleccionado, 'sel_ciudad_trabajador', 'ciudades', 'localidades');
+							jQuery('#sel_ciudad_trabajador [value='+jQuery('#ciudad_trabajador').val()+']').attr('selected', 'selected');
+						}
 
 						jQuery('#error_ingresar_trabajador').html('').hide();
 						jQuery('#error_numero_documento').html('Trabajador encontrado.').show();

@@ -19,6 +19,16 @@ class Trabajador extends AppModel
 		(
 			'className' => 'Localidad',
 			'foreignKey' => 'id_localidad'
+		),
+		'Ciudad' => array
+		(
+			'className' => 'Ciudad',
+			'foreignKey' => 'id_ciudad'
+		),
+		'Departamento' => array
+		(
+			'className' => 'Departamento',
+			'foreignKey' => 'id_depto'
 		)
 	);
 }

@@ -287,6 +287,8 @@ jQuery(document).ready(function()
 	});
 	*/
 	
+	jQuery('#departamento_trabajador [value=33]').attr('selected', 'selected');
+	
 	if ( jQuery('#cuadro_notificaciones').not(':hidden') )
 	{
 		jQuery('#cuadro_notificaciones').hide().slideDown('slow');
@@ -301,7 +303,22 @@ jQuery(document).ready(function()
 	jQuery('#fecha_anio').change(cargar_edad);*/
 	
 	jQuery('#empresa').change(cargar_datos_empresa);
-	
+	//--------------------------------------------------------------------------
+	jQuery('#departamento_trabajador').change(function()
+	{
+		depto_seleccionado = jQuery('#departamento_trabajador').val();
+		if ( depto_seleccionado == '33' )
+		{
+			jQuery('#etiqueta_ciudad_localidad').html('Localidad:');
+			cargar_localidades('ciudades', 'localidades');
+		}
+		else
+		{
+			jQuery('#etiqueta_ciudad_localidad').html('Municipio:');
+			cargar_ciudades(depto_seleccionado, 'ciudad_trabajador', 'ciudades', 'localidades');
+		}
+	});
+	//--------------------------------------------------------------------------
 	// Validamos los datos del formulario.
 	jQuery('#ingresar_trabajador').submit(function()
 	{
@@ -329,6 +346,7 @@ jQuery(document).ready(function()
 			jQuery('#eps').val(jQuery.trim(jQuery('#eps').val()));
 			jQuery('#estado_civil').val(jQuery.trim(jQuery('#estado_civil').val()));
 			jQuery('#cant_hijos').val(jQuery.trim(jQuery('#cant_hijos').val()));
+			
 			jQuery('#ingresar_trabajador').attr('action', '/trabajadores/add');
 			return true;
 		}
