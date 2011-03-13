@@ -29,6 +29,11 @@ class Trabajador extends AppModel
 		(
 			'className' => 'Departamento',
 			'foreignKey' => 'id_depto'
+		),
+		'Estadocivil' => array
+		(
+			'className' => 'Estadocivil',
+			'foreignKey' => 'id_estado_civil'
 		)
 	);
 }

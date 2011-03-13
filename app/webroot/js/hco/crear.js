@@ -136,11 +136,11 @@ jQuery(document).ready(function()
 						jQuery('#telefono_personal').html(jQuery('#telefono_personal_trabajador').val());
 						jQuery('#fecha_nacimiento').html(jQuery('#fecha_nacimiento_trabajador').val());
 						jQuery('#nivel_estudio').html(jQuery('#nivel_estudio_trabajador').val());
-						jQuery('#eps').html(jQuery('#eps_trabajador').val());
+						jQuery('#eps').val(jQuery('#eps_trabajador').val());
 						jQuery('#arp').val(jQuery('#arp_trabajador').val());
-						jQuery('#estado_civil').html(jQuery('#estado_civil_trabajador').val());
+						jQuery('#estado_civil [value='+jQuery('#id_estado_civil_trabajador').val()+']').attr('selected', 'selected');
 						jQuery('#cant_hijos').html(jQuery('#cant_hijos_trabajador').val());
-						jQuery('#practica_religiosa').html(jQuery('#practica_religiosa_trabajador').val());
+						jQuery('#practica_religiosa [value='+jQuery('#id_practica_religiosa_trabajador').val()+']').attr('selected', 'selected');
 						
 						depto_seleccionado = jQuery('#departamento_trabajador').val();
 						jQuery('#sel_departamento_trabajador [value='+depto_seleccionado+']').attr('selected', 'selected');

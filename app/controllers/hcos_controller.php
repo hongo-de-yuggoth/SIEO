@@ -68,30 +68,17 @@ class HcosController extends AppController
 	function crear()
 	{
 		$this->loadModel('Departamento');
-		$this->loadModel('Ciudad');
 		$this->loadModel('Localidad');
+		$this->loadModel('Estadocivil');
+		$this->loadModel('Religion');
 		$departamentos = $this->Departamento->find('all', array
 		(
 			'fields' => array
 			(
 				'Departamento.id',
-				'Departamento.nombre'
+				'UPPER(Departamento.nombre) AS nombre'
 			),
 			'order' => 'Departamento.nombre',
-			'recursive' => 0
-		));
-		$ciudades = $this->Ciudad->find('all', array
-		(
-			'fields' => array
-			(
-				'Ciudad.id',
-				'Ciudad.nombre'
-			),
-			'conditions' => array
-			(
-				'Ciudad.id_depto' => $departamentos[0]['Departamento']['id']
-			),
-			'order' => 'Ciudad.nombre',
 			'recursive' => 0
 		));
 		$localidades = $this->Localidad->find('all', array
@@ -104,29 +91,50 @@ class HcosController extends AppController
 			'order' => 'Localidad.nombre',
 			'recursive' => 0
 		));
-		if ( !empty($departamentos) && !empty($ciudades) && !empty($localidades) )
+		$estados_civiles = $this->Estadocivil->find('all', array
+		(
+			'fields' => array
+			(
+				'Estadocivil.id',
+				'Estadocivil.nombre'
+			),
+			'recursive' => 0
+		));
+		$religiones = $this->Religion->find('all', array
+		(
+			'fields' => array
+			(
+				'Religion.id',
+				'Religion.nombre'
+			),
+			'recursive' => 0
+		));
+		if ( !empty($departamentos) && !empty($localidades) && !empty($estados_civiles) && !empty($religiones) )
 		{
 			$departamentos_options = '';
 			foreach ( $departamentos as $departamento )
 			{
-				$departamentos_options .= '<option value="'.$departamento['Departamento']['id'].'">'.$departamento['Departamento']['nombre'].'</option>';
+				$departamentos_options .= '<option value="'.$departamento['Departamento']['id'].'">'.$departamento[0]['nombre'].'</option>';
 			}
-			
-			$ciudades_options = '';
-			foreach ( $ciudades as $ciudad )
-			{
-				$ciudades_options .= '<option value="'.$ciudad['Ciudad']['id'].'">'.$ciudad['Ciudad']['nombre'].'</option>';
-			}
-			
 			$localidades_options = '';
 			foreach ( $localidades as $localidad )
 			{
-				$localidades_options .= '<option value="'.$localidad['Localidad']['id'].'">'.$localidad['Localidad']['nombre'].'</option>';
+				$localidades_options .= '<option value="'.$localidad['Localidad']['id'].'">'.mb_convert_case($localidad['Localidad']['nombre'], MB_CASE_UPPER, "UTF-8").'</option>';
 			}
-			
+			$estados_civiles_options = '';
+			foreach ( $estados_civiles as $estado_civil )
+			{
+				$estados_civiles_options .= '<option value="'.$estado_civil['Estadocivil']['id'].'">'.$estado_civil['Estadocivil']['nombre'].'</option>';
+			}
+			$religiones_options = '';
+			foreach ( $religiones as $religion )
+			{
+				$religiones_options .= '<option value="'.$religion['Religion']['id'].'">'.mb_convert_case($religion['Religion']['nombre'], MB_CASE_UPPER, "UTF-8").'</option>';
+			}
 			$this->set('departamentos', utf8_encode($departamentos_options));
-			$this->set('ciudades', utf8_encode($ciudades_options));
 			$this->set('localidades', $localidades_options);
+			$this->set('estados_civiles', utf8_encode($estados_civiles_options));
+			$this->set('religiones', $religiones_options);
 		}
 	}
 	

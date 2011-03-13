@@ -23,7 +23,6 @@ echo $this->Html->script(array
 <!-- -------- -->
 
 <form name="crear_hco" id="crear_hco" action="#" method="post" enctype="multipart/form-data">
-	<div class="ajax_loading_image"></div>
 	<div id="escondidos">
 		<input id="encontro" type="hidden" value='' />
 	</div>
@@ -73,6 +72,7 @@ echo $this->Html->script(array
 			</ul>
 		</div>
 
+		<!-- DATOS DE IDENTIFICACIÓN -->
 		<fieldset>
 			<legend><b>&nbsp;Datos de identificaci&oacute;n&nbsp;</b></legend>
 			<div>
@@ -131,9 +131,7 @@ echo $this->Html->script(array
 						<td width="30"></td>
 						<td id="etiqueta_ciudad_localidad" width="75" class="subtitulo">Localidad	:</td>
 						<td width="*">
-							<div id="ciudades" style="display:none;"><select id="sel_ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:215px;">
-							<?php echo $ciudades; ?>
-							</select></div>
+							<div id="ciudades" style="display:none;"><select id="sel_ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:215px;"></select></div>
 							<div id="localidades" style="display:block;"><select id="sel_localidad_trabajador" name="data[Trabajador][id_localidad]" style="width:140px;">
 							<?php echo $localidades; ?>
 							</select></div>
@@ -172,7 +170,7 @@ echo $this->Html->script(array
 					<table width="100%"><tbody>
 						<tr valign="top" align="left">
 							<td width="40" class="subtitulo">EPS:</td>
-							<td width="210"><div id="eps"></div></td>
+							<td width="210"><input id="eps" name="data[Trabajador][eps]" style="width:210px;" maxlength="50" /></td>
 							<td width="15"></td>
 							<td width="40" class="subtitulo">ARP:</td>
 							<td width="*"><input id="arp" name="data[Hco][arp]" style="width:210px;" maxlength="50" /></td>
@@ -183,15 +181,23 @@ echo $this->Html->script(array
 					<legend><b>&nbsp;Datos socio-demogr&aacute;ficos&nbsp;</b></legend>
 					<table width="100%"><tbody>
 						<tr valign="top" align="left">
-							<td width="100" class="subtitulo">Estado civil:</td>
-							<td width="210"><div id="estado_civil"></div></td>
-							<td width="15"></td>
-							<td width="120" class="subtitulo">Pr&aacute;ctica religiosa:</td>
-							<td width="*"><div id="practica_religiosa"></div></td>
+							<td width="120" class="subtitulo">Estado civil:</td>
+							<td width="210">
+								<select id="estado_civil" name="data[Trabajador][id_estado_civil]" style="width:215px;">
+								<?php echo $estados_civiles; ?>
+								</select>
+							</td>
+							<td width="10"></td>
+							<td width="100" class="subtitulo">Cant. de hijos:</td>
+							<td width="*"><div id="cant_hijos"></div></td>
 						</tr>
 						<tr valign="top" align="left">
-							<td width="100" class="subtitulo">Cant. de hijos:</td>
-							<td width="*" colspan="4"><div id="cant_hijos"></div></td>
+							<td width="120" class="subtitulo">Pr&aacute;ctica religiosa:</td>
+							<td width="*" colspan="4">
+								<select id="practica_religiosa" name="data[Trabajador][id_religion]" style="width:124px;">
+								<?php echo $religiones; ?>
+								</select>
+							</td>
 						</tr>
 					</tbody></table>
 				</fieldset>
@@ -279,9 +285,9 @@ echo $this->Html->script(array
 					<td width="51">Tabaquismo:</td>
 					<td width="83">
 						<select id="tabaquismo" name="data[Antecedente][tabaquismo]" style="width:80px;">
-							<option value="S">Si</option>
-							<option value="N">No</option>
-							<option value="O">Ocasional</option>
+							<option value="S">SI</option>
+							<option value="N">NO</option>
+							<option value="O">OCASIONAL</option>
 						</select>
 					</td>
 					<td width="*">#xD&iacute;a:<input type="text" id="cant_cigarrillos" name="data[Antecedente][cant_cigarrillos]" maxlength="3" style="width:25px;" /></td>
@@ -869,9 +875,9 @@ echo $this->Html->script(array
 					<td width="40" class="subtitulo">Lateralidad:</td>
 					<td width="*">
 						<select id="lateralidad" name="data[Examenfisico][lateralidad]" style="width:93px;">
-							<option value="D">Diestro</option>
-							<option value="Z">Zurdo</option>
-							<option value="A">Ambidiestro</option>
+							<option value="D">DIESTRO</option>
+							<option value="Z">ZURDO</option>
+							<option value="A">AMBIDIESTRO</option>
 						</select>
 					</td>
 				</tr>
@@ -964,8 +970,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Thinnel:</td>
 					<td width="*">
 						<select id="thinnel" name="data[Pruebaenfermedadprofesional][thinnel]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -973,8 +979,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Phalen:</td>
 					<td width="*">
 						<select id="phalen" name="data[Pruebaenfermedadprofesional][phalen]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -982,8 +988,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Flinkestein:</td>
 					<td width="*">
 						<select id="flinkestein" name="data[Pruebaenfermedadprofesional][flinkestein]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -991,10 +997,10 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Wells:</td>
 					<td width="*">
 						<select id="wells" name="data[Pruebaenfermedadprofesional][wells]" style="width:75px;">
-							<option value="1">I</option>
-							<option value="2">II</option>
-							<option value="3">III</option>
-							<option value="4">IV</option>
+							<option value="1">I - ANORMAL</option>
+							<option value="2">II - ANORMAL</option>
+							<option value="3">III - NORMAL</option>
+							<option value="4">IV - NORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -1002,8 +1008,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Movilidad Columna:</td>
 					<td width="*">
 						<select id="movilidad_columna" name="data[Pruebaenfermedadprofesional][movilidad_columna]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -1011,8 +1017,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Laessegue:</td>
 					<td width="*">
 						<select id="laessegue" name="data[Pruebaenfermedadprofesional][laessegue]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -1020,8 +1026,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba Rombert:</td>
 					<td width="*">
 						<select id="rombert" name="data[Pruebaenfermedadprofesional][rombert]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>
@@ -1029,8 +1035,8 @@ echo $this->Html->script(array
 					<td width="180" class="subtitulo">Prueba V&eacute;rtigo:</td>
 					<td width="*">
 						<select id="vertigo" name="data[Pruebaenfermedadprofesional][vertigo]" style="width:75px;">
-							<option value="N">Normal</option>
-							<option value="A">Anormal</option>
+							<option value="N">NORMAL</option>
+							<option value="A">ANORMAL</option>
 						</select>
 					</td>
 				</tr>

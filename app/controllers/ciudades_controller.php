@@ -88,7 +88,7 @@ class CiudadesController extends AppController
 				'fields' => array
 				(
 					'Ciudad.id',
-					'Ciudad.nombre'
+					'UPPER(Ciudad.nombre) AS nombre'
 				),
 				'conditions' => array
 				(
@@ -102,7 +102,7 @@ class CiudadesController extends AppController
 				$ciudades_options = '';
 				foreach ( $ciudades as $ciudad )
 				{
-					$ciudades_options .= '<option value="'.$ciudad['Ciudad']['id'].'">'.$ciudad['Ciudad']['nombre'].'</option>';
+					$ciudades_options .= '<option value="'.$ciudad['Ciudad']['id'].'">'.$ciudad[0]['nombre'].'</option>';
 				}
 				return json_encode(array
 				(
