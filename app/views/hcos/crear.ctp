@@ -301,78 +301,82 @@ echo $this->Html->script(array
 					<td colspan="5"><input type="text" id="ant_familiar" name="data[Antecedente][familiar]" style="width:433px;" maxlength="200" /></td>
 				</tr>
 				<tr align="left">
-					<td class="subtitulo">Gineco-Obst&eacute;trico:</td>
-					<td colspan="5">
-						G:<input type="text" id="gin_g" name="data[Antecedente][gin_g]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
-						P:<input type="text" id="gin_p" name="data[Antecedente][gin_p]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
-						A:<input type="text" id="gin_a" name="data[Antecedente][gin_a]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
-						M:<input type="text" id="gin_m" name="data[Antecedente][gin_m]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
-						GEM:<input type="text" id="gin_gem" name="data[Antecedente][gin_gem]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
-						C:<input type="text" id="gin_c" name="data[Antecedente][gin_c]" size="2" maxlength="3" />
-					</td>
-				</tr>
-				<tr align="left">
-					<td></td>
-					<td colspan="5">
-						FUM: <input id="fecha_nacimiento" name='data[Antecedente][gin_fum]' type='hidden' value='' />
-						<select id="fecha_dia" name="fecha_dia" class="fecha_dia">
-							<option value="day">D&iacute;a</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-						 </select>
-						<select id="fecha_mes" name="fecha_mes" class="fecha_mes">
-						  <option value="-1">Mes</option>
-						  <option value="1">Enero</option>
-						  <option value="2">Febrero</option>
-						  <option value="3">Marzo</option>
-						  <option value="4">Abril</option>
-						  <option value="5">Mayo</option>
-						  <option value="6">Junio</option>
-						  <option value="7">Julio</option>
-						  <option value="8">Agosto</option>
-						  <option value="9">Septiembre</option>
-						  <option value="10">Octubre</option>
-						  <option value="11">Noviembre</option>
-						  <option value="12">Diciembre</option>
-						</select>
-			 
-						<input type="text" class="w3em" id="fecha_anio" name="fecha_anio" size="3" maxlength="4" />
-					</td>
-				</tr>
-				<tr align="left">
 					<td class="subtitulo">Inmunol&oacute;gicos:</td>
 					<td width="*" colspan="5"><input type="text" id="ant_inmunologico" name="data[Antecedente][inmunologico]" style="width:433px;" maxlength="200" /></td>
 				</tr>
 			</tbody></table>
+			<div id="ginecoobstetrico" style="display:none;">
+				<table width="100%"><tbody>
+					<tr align="left">
+						<td width="130" class="subtitulo">Gineco-Obst&eacute;trico:</td>
+						<td width="*">
+							G:<input type="text" id="gin_g" name="data[Antecedente][gin_g]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
+							P:<input type="text" id="gin_p" name="data[Antecedente][gin_p]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
+							A:<input type="text" id="gin_a" name="data[Antecedente][gin_a]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
+							M:<input type="text" id="gin_m" name="data[Antecedente][gin_m]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
+							GEM:<input type="text" id="gin_gem" name="data[Antecedente][gin_gem]" size="2" maxlength="3" />&nbsp;&nbsp;&nbsp;
+							C:<input type="text" id="gin_c" name="data[Antecedente][gin_c]" size="2" maxlength="3" />
+						</td>
+					</tr>
+					<tr align="left">
+						<td width="130"></td>
+						<td width="*">
+							FUM: <input id="fecha_nacimiento" name='data[Antecedente][gin_fum]' type='hidden' value='' />
+							<select id="fecha_dia" name="fecha_dia" class="fecha_dia">
+								<option value="day">D&iacute;a</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
+							 </select>
+							<select id="fecha_mes" name="fecha_mes" class="fecha_mes">
+							  <option value="-1">Mes</option>
+							  <option value="1">Enero</option>
+							  <option value="2">Febrero</option>
+							  <option value="3">Marzo</option>
+							  <option value="4">Abril</option>
+							  <option value="5">Mayo</option>
+							  <option value="6">Junio</option>
+							  <option value="7">Julio</option>
+							  <option value="8">Agosto</option>
+							  <option value="9">Septiembre</option>
+							  <option value="10">Octubre</option>
+							  <option value="11">Noviembre</option>
+							  <option value="12">Diciembre</option>
+							</select>
+				 
+							<input type="text" class="w3em" id="fecha_anio" name="fecha_anio" size="3" maxlength="4" />
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
 		</fieldset>
 		
 		<!-- ANTECEDENTES LABORALES -->

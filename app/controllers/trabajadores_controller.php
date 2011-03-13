@@ -167,6 +167,7 @@ class TrabajadoresController extends AppController
 				$input_id = '<input id="id_trabajador" name="data[Trabajador][id]" type="hidden" value="'.$trabajador['Trabajador']['id'].'"/>';
 				$input_nombre = '<input id="nombre_trabajador" type="hidden" value="'.mb_convert_case( $trabajador['Trabajador']['nombre'], MB_CASE_UPPER, "UTF-8").'"/>';
 				$input_sexo = '<input id="sexo_trabajador" type="hidden" value="'.$this->sexo[$trabajador['Trabajador']['sexo']].'"/>';
+				$input_sexo_id = '<input id="sexo_id" type="hidden" value="'.$trabajador['Trabajador']['sexo'].'"/>';
 				$input_tipo_documento = '<input id="tipo_documento_trabajador" type="hidden" value="'.$trabajador['Trabajador']['tipo_doc'].'"/>';
 				$input_numero_documento = '<input id="numero_documento_trabajador" type="hidden" value="'.$trabajador['Trabajador']['numero_doc'].'"/>';
 				$input_direccion = '<input id="direccion_trabajador" type="hidden" value="'.mb_convert_case(htmlspecialchars($trabajador['Trabajador']['direccion']), MB_CASE_UPPER, "UTF-8").'"/>';
@@ -192,6 +193,7 @@ class TrabajadoresController extends AppController
 				return	$input_id.
 							$input_nombre.
 							$input_sexo.
+							$input_sexo_id.
 							$input_tipo_documento.
 							$input_numero_documento.
 							$input_direccion.

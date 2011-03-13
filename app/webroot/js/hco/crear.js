@@ -52,14 +52,14 @@ jQuery(document).ready(function()
 	jQuery('#numero_documento').keypress(config_input);
 	*/
 	
-	/*datePickerController.createDatePicker(
+	datePickerController.createDatePicker(
 	{
 		formElements:{"fecha_anio":"Y","fecha_mes":"n","fecha_dia":"j"},
 		showWeeks:false,
 		noTodayButton:true,
 		noFadeEffect:true,
 		statusFormat:"l-cc-sp-d-sp-F-sp-Y"
-	});*/
+	});
 	
 	if ( jQuery('#cuadro_notificaciones').not(':hidden') )
 	{
@@ -155,6 +155,15 @@ jQuery(document).ready(function()
 							jQuery('#etiqueta_ciudad_localidad').html('Municipio:');
 							cargar_ciudades(depto_seleccionado, 'sel_ciudad_trabajador', 'ciudades', 'localidades');
 							jQuery('#sel_ciudad_trabajador [value='+jQuery('#ciudad_trabajador').val()+']').attr('selected', 'selected');
+						}
+						
+						if ( jQuery('#sexo_id').val() == 'F' )
+						{
+							jQuery('#ginecoobstetrico').show();
+						}
+						else
+						{
+							jQuery('#ginecoobstetrico').hide();
 						}
 
 						jQuery('#error_ingresar_trabajador').html('').hide();
