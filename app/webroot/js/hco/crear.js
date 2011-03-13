@@ -88,9 +88,13 @@ jQuery(document).ready(function()
 	// Configuramos el botón para buscar trabajadores.
 	jQuery('#boton_buscar_trabajador').click(function()
 	{
+		jQuery('#error_numero_documento').hide();
+		jQuery('#reloj_arena').show();
+		
 		// Validamos el campo de Número de Documento
 		if ( jQuery('#numero_documento_buscar').val() == '' )
 		{
+			jQuery('#reloj_arena').hide();
 			jQuery('#error_ingresar_trabajador').html('').hide();
 			jQuery('#error_numero_documento').html('Escribe el n&uacute;mero de documento por favor.').show();
 		}
@@ -102,6 +106,7 @@ jQuery(document).ready(function()
 				'/trabajadores/buscar_info_completa/'+jQuery('#tipo_documento').val()+'/'+jQuery('#numero_documento_buscar').val(),
 				function()
 				{
+					jQuery('#reloj_arena').hide();
 					// Si encontró el Trabajador
 					if ( jQuery('#encontro').val() == 'true' )
 					{
@@ -110,8 +115,19 @@ jQuery(document).ready(function()
 						// Leemos datos de inputs hidden y ponemos info en el cuadro de
 						// info del trabajador.
 						jQuery('#empresa').html(jQuery('#empresa_trabajador').val());
-						jQuery('#ciudad').html(jQuery('#ciudad_empresa').val());
+						
 						jQuery('#departamento').html(jQuery('#departamento_empresa').val());
+						if ( jQuery('#id_departamento_empresa').val() == "33" )
+						{
+							jQuery('#etiqueta_ciudad_localidad_empresa').html('Localidad:');
+							jQuery('#ciudad').html(jQuery('#localidad_empresa').val());
+						}
+						else
+						{
+							jQuery('#etiqueta_ciudad_localidad_empresa').html('Municipio:');
+							jQuery('#ciudad').html(jQuery('#ciudad_empresa').val());
+						}
+						
 						jQuery('#nombre').html(jQuery('#nombre_trabajador').val());
 						jQuery('#documento').html(jQuery('#tipo_documento_trabajador').val()+' '+jQuery('#numero_documento_trabajador').val());
 						jQuery('#sexo').html(jQuery('#sexo_trabajador').val());
@@ -119,7 +135,6 @@ jQuery(document).ready(function()
 						jQuery('#telefono_familiar').html(jQuery('#telefono_familiar_trabajador').val());
 						jQuery('#telefono_personal').html(jQuery('#telefono_personal_trabajador').val());
 						jQuery('#fecha_nacimiento').html(jQuery('#fecha_nacimiento_trabajador').val());
-						jQuery('#cargo_desempenar').val(jQuery('#cargo_desempenar_trabajador').val());
 						jQuery('#nivel_estudio').html(jQuery('#nivel_estudio_trabajador').val());
 						jQuery('#eps').html(jQuery('#eps_trabajador').val());
 						jQuery('#arp').html(jQuery('#arp_trabajador').val());

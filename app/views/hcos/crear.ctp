@@ -31,10 +31,10 @@ echo $this->Html->script(array
 	<!-- SECCION: BUSQUEDA TRABAJADOR -->
 	<div id="buscar_documento">
 		<table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody>
-			<tr><td height="20" colspan="3"></td></tr>
+			<tr><td width="100%" height="20" colspan="3"></td></tr>
 			<tr align="left">
-				<td width="160" class="subtitulo">Tipo de documento:</td>
-				<td width="100" colspan="2">
+				<td width="100" class="subtitulo">Tipo de documento:</td>
+				<td width="*" colspan="2">
 					<select  id="tipo_documento" style="width:145px;">
 						<option value="cc">C&eacute;dula de Ciudadan&iacute;a</option>
 						<option value="ce">C&eacute;dula de Extranjer&iacute;a</option>
@@ -43,15 +43,23 @@ echo $this->Html->script(array
 				</td>
 			</tr>
 			<tr align="left">
-				<td width="160" class="subtitulo">Número del documento:</td>
-				<td width="120"><input size="9" maxlength="15" id="numero_documento_buscar"></td>
-				<td style="padding-left: 5px;"><input type="button" value="Buscar trabajador" id="boton_buscar_trabajador"></td>
+				<td width="100" class="subtitulo">Número del documento:</td>
+				<td width="90"><input size="9" maxlength="15" id="numero_documento_buscar"></td>
+				<td width="*" style="padding-left: 5px;"><input type="button" value="Buscar trabajador" id="boton_buscar_trabajador"></td>
 			</tr>
+		</tbody></table>
+		
+		<table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody>
 			<tr align="left">
-				<td width="120"></td>
-				<td width="*" class="texto-error" colspan="3"><div style="display: none;" id="error_numero_documento"></div></td>
+				<td width="100%">
+					<div style="display: none; padding-left:195px;" id="error_numero_documento" class="texto-error"></div>
+				</td>
 			</tr>
-			<tr><td height="10" ></td></tr>
+			<tr>
+				<td width="100%">
+					<div id='reloj_arena' align='center' style='display:none;'><img class="no-border" alt="" src="/img/ajaxload.gif" /></div>
+				</td>
+			</tr>
 		</tbody></table>
 	</div>
 	
@@ -72,22 +80,24 @@ echo $this->Html->script(array
 					<tr align="right">
 						<td colspan="2"><span class="subtitulo">Fecha:</span> <span id="fecha">28/Enero/2011 - 11:00AM</span></td>
 					</tr>
-					<tr align="left">
-						<td width="143" class="subtitulo">Empresa contratante:</td>
-						<td width="*"><div id="empresa"></div></td>
-					</tr>
 				</tbody></table>
 			</div>
 			<div>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="100" class="subtitulo">Departamento:</td>
-						<td width="125"><div id="departamento"></div></td>
-						<td width="30"></td>
-						<td id="etiqueta_ciudad_localidad_empresa" width="54" class="subtitulo">Municipio:</td>
-						<td width="*"><div id="ciudad"></div></td>
-					</tr>
-				</tbody></table>
+				<fieldset>
+					<legend><b>&nbsp;Empresa Contratante&nbsp;</b></legend>
+					<table width="100%"><tbody>
+						<tr align="left">
+							<td width="*" colspan="5"><div id="empresa" style="font-size:13px;"></div></td>
+						</tr>
+						<tr valign="top" align="left">
+							<td width="100" class="subtitulo">Departamento:</td>
+							<td width="125"><div id="departamento"></div></td>
+							<td width="30"></td>
+							<td id="etiqueta_ciudad_localidad_empresa" width="75" class="subtitulo">Municipio:</td>
+							<td width="*"><div id="ciudad"></div></td>
+						</tr>
+					</tbody></table>
+				</fieldset>
 			</div>
 			<div>
 				<table width="100%"><tbody>
@@ -151,7 +161,7 @@ echo $this->Html->script(array
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
 						<td width="140" class="subtitulo">Cargo a desempeñar:</td>
-						<td width="210"><input id="cargo_desempenar" name="data[Trabajador][cargo_desempenar]" size="27" maxlength="50" /></td>
+						<td width="210"><input id="cargo_desempenar" name="data[Hco][cargo_desempenar]" size="27" maxlength="50" /></td>
 						<td width="15"></td>
 						<td width="120" class="subtitulo">Nivel de estudios:</td>
 						<td width="*"><div id="nivel_estudio"></div></td>

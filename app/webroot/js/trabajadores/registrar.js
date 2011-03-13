@@ -87,22 +87,6 @@ function fecha_nacimiento_vacio()
 
 //--------------------------------------------------------------------------
 
-function cargo_vacio()
-{
-	if ( jQuery('#cargo_desempenar').val() == '' )
-	{
-		jQuery('#error_cargo_desempenar').html('Escribe el cargo que desempeñar&aacute; el trabajador.').show();
-		return true;
-	}
-	else
-	{
-		jQuery('#error_cargo_desempenar').hide();
-		return false;
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 function eps_vacio()
 {
 	if ( jQuery('#eps').val() == '' )
@@ -246,7 +230,6 @@ jQuery(document).ready(function()
 	jQuery('#direccion').keypress(config_input);
 	jQuery('#telefono_familiar').keypress(config_input);
 	jQuery('#telefono_personal').keypress(config_input);
-	jQuery('#cargo_desempenar').keypress(config_input);
 	jQuery('#eps').keypress(config_input);
 	jQuery('#estado_civil').keypress(config_input);
 	jQuery('#cant_hijos').keypress(config_input);
@@ -328,13 +311,12 @@ jQuery(document).ready(function()
 		dv = direccion_vacio();
 		tv = telefonos_vacio();
 		fnv = fecha_nacimiento_vacio();
-		cv = cargo_vacio();
 		epsv = eps_vacio();
 		ecv = estado_civil_vacio();
 		chcl = cant_hijos_con_logica();
 		
 		// Si pasa todas las validaciones hacemos el Submit.
-		if ( nv==false && ndcl==true && dv==false && tv==false && fnv==false && cv==false && epsv==false && ecv==false && chcl==true )
+		if ( nv==false && ndcl==true && dv==false && tv==false && fnv==false && epsv==false && ecv==false && chcl==true )
 		{
 			jQuery('#nombre').val(jQuery.trim(jQuery('#nombre').val()));
 			jQuery('#numero_documento').val(jQuery.trim(jQuery('#numero_documento').val()));
@@ -342,7 +324,6 @@ jQuery(document).ready(function()
 			jQuery('#direccion').val(jQuery.trim(jQuery('#direccion').val()));
 			jQuery('#telefono_familiar').val(jQuery.trim(jQuery('#telefono_familiar').val()));
 			jQuery('#telefono_personal').val(jQuery.trim(jQuery('#telefono_personal').val()));
-			jQuery('#cargo_desempenar').val(jQuery.trim(jQuery('#cargo_desempenar').val()));
 			jQuery('#eps').val(jQuery.trim(jQuery('#eps').val()));
 			jQuery('#estado_civil').val(jQuery.trim(jQuery('#estado_civil').val()));
 			jQuery('#cant_hijos').val(jQuery.trim(jQuery('#cant_hijos').val()));

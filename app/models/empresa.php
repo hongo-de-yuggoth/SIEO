@@ -12,6 +12,11 @@ class Empresa extends AppModel {
 		(
 			'className' => 'Departamento',
 			'foreignKey' => 'id_depto'
+		),
+		'Localidad' => array
+		(
+			'className' => 'Localidad',
+			'foreignKey' => 'id_localidad'
 		)
 	);
 }

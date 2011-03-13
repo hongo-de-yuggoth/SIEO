@@ -239,9 +239,6 @@ echo $this->Html->script(array
 			<div>
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
-						<td width="140" class="subtitulo">Cargo a desempeñar:</td>
-						<td width="210"><input id="cargo_desempenar" name="data[Trabajador][cargo_desempenar]" size="27" maxlength="50" /></td>
-						<td width="15"></td>
 						<td width="120" class="subtitulo">Nivel de estudios:</td>
 						<td width="*">
 							<select id="nivel_estudio" name="data[Trabajador][nivel_estudio]" style="width:47px;">
@@ -263,11 +260,6 @@ echo $this->Html->script(array
 								<option value="PG">PG</option>
 							</select>
 						</td>
-					</tr>
-					<tr>
-						<td width="140"></td>
-						<td width="210" class="texto-error" valign="top"><div id="error_cargo_desempenar" style="display:none;" /></td>
-						<td width="*" colspan="3"></td>
 					</tr>
 					<tr><td height="10" colspan="5"></td></tr>
 				</tbody></table>
