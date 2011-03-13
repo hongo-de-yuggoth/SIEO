@@ -122,17 +122,17 @@ echo $this->Html->script(array
 				</tbody></table>
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
-						<td width="105" class="subtitulo">Departamento:</td>
-						<td width="130">
-							<select id="sel_departamento_trabajador" name="data[Trabajador][id_depto]" style="width:130px;">
+						<td width="100" class="subtitulo">Departamento:</td>
+						<td width="155">
+							<select id="sel_departamento_trabajador" name="data[Trabajador][id_depto]" style="width:155px;">
 							<?php echo $departamentos; ?>
 							</select>
 						</td>
-						<td width="30"></td>
-						<td id="etiqueta_ciudad_localidad" width="75" class="subtitulo">Localidad	:</td>
+						<td width="10"></td>
+						<td id="etiqueta_ciudad_localidad" width="70" class="subtitulo">Localidad:</td>
 						<td width="*">
-							<div id="ciudades" style="display:none;"><select id="sel_ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:215px;"></select></div>
-							<div id="localidades" style="display:block;"><select id="sel_localidad_trabajador" name="data[Trabajador][id_localidad]" style="width:140px;">
+							<div id="ciudades" style="display:none;"><select id="sel_ciudad_trabajador" name="data[Trabajador][id_ciudad]" style="width:235px;"></select></div>
+							<div id="localidades" style="display:block;"><select id="sel_localidad_trabajador" name="data[Trabajador][id_localidad]" style="width:144px;">
 							<?php echo $localidades; ?>
 							</select></div>
 						</td>
@@ -280,17 +280,21 @@ echo $this->Html->script(array
 				</tr>
 				<tr align="left">
 					<td width="130" class="subtitulo">Toxicol&oacute;gicos:</td>
-					<td width="168">Consumo alcohol(Frec. Mes):</td>
+					<td width="138">Consumo alcohol(Mes):</td>
 					<td width="35"><input type="text" id="frec_mes_alcohol" name="data[Antecedente][frec_mes_alcohol]" size="1" maxlength="2" /></td>
 					<td width="51">Tabaquismo:</td>
-					<td width="83">
-						<select id="tabaquismo" name="data[Antecedente][tabaquismo]" style="width:80px;">
+					<td width="113">
+						<select id="tabaquismo" name="data[Antecedente][tabaquismo]" style="width:94px;">
 							<option value="S">SI</option>
 							<option value="N">NO</option>
 							<option value="O">OCASIONAL</option>
 						</select>
 					</td>
 					<td width="*">#xD&iacute;a:<input type="text" id="cant_cigarrillos" name="data[Antecedente][cant_cigarrillos]" maxlength="3" style="width:25px;" /></td>
+				</tr>
+				<tr align="left">
+					<td width="130"></td>
+					<td width="*" colspan="5">Otros: <input type="text" id="tox_otros" name="data[Antecedente][tox_otros]" maxlength="50" style="width:393px;" /></td>
 				</tr>
 				<tr align="left">
 					<td class="subtitulo">Familiar:</td>
@@ -1133,10 +1137,23 @@ echo $this->Html->script(array
 		<!-- RECOMENDACIONES -->
 		<fieldset>
 			<legend><b>&nbsp;Recomendaciones&nbsp;</b></legend>
-			<ol id="recomendaciones">
-				<li>Utilizar elementos de protecci&oacute;n personal</li>
-				<li>Utilizar elementos de protecci&oacute;n personal</li>
-			</ol>
+			<div style="vertical-align:middle; width:60px; text-align:center; margin-bottom:5px;" >
+				<a id="boton_agregar_recomendacion" href="#" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Agregar otra recomendación">
+					<table><tbody>
+						<tr>
+							<td><img class="no-border" src="/img/agregar.png" align="center" /></td>
+							<td>AGREGAR</td>
+						</tr>
+					</tbody></table>
+				</a>
+			</div>
+			<table id="recomendaciones" cellspacing="0" cellpadding="0" border="0" width="100%"><tbody>
+				<tr id="rec_1">
+					<td width="10" class="num-rec subtitulo">1.&nbsp;</td>
+					<td width="510"><input id="recomendacion_1" type="text" maxlength="100" style="width:500px;" /></td>
+					<td width="*"><img id="boton_borrar_recomendacion_1" alt="Borrar recomendación" title="Borrar recomendación" class="no-border" src="/img/borrar.png" /></td>
+				</tr>
+			</tbody></table>
 		</fieldset>
 		
 		<!-- CONCEPTO MÉDICO OCUPACIONAL -->

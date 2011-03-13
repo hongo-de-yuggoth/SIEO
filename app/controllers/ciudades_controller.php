@@ -118,5 +118,34 @@ class CiudadesController extends AppController
 	}
 	
 	//--------------------------------------------------------------------------
+	
+	function todas($largo)
+	{
+		$this->autoLayout = false;
+		$this->autoRender = false;
+		
+		$ciudades = $this->Ciudad->find('all', array
+		(
+			'fields' => array
+			(
+				'Ciudad.id',
+				'Ciudad.nombre'
+			),
+			'recursive' => 0
+		));
+		
+		$ciudades_options = '';
+		foreach ( $ciudades as $ciudad )
+		{
+			if ( strlen($ciudad['Ciudad']['nombre']) > $largo )
+			{
+				$ciudades_options .= 'Nombre: '.$ciudad['Ciudad']['nombre'].'<br>';
+			}
+		}
+		
+		echo $ciudades_options;
+	}
+	
+	//--------------------------------------------------------------------------
 }
 ?>
