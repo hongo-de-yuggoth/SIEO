@@ -137,7 +137,7 @@ jQuery(document).ready(function()
 						jQuery('#fecha_nacimiento').html(jQuery('#fecha_nacimiento_trabajador').val());
 						jQuery('#nivel_estudio').html(jQuery('#nivel_estudio_trabajador').val());
 						jQuery('#eps').html(jQuery('#eps_trabajador').val());
-						jQuery('#arp').html(jQuery('#arp_trabajador').val());
+						jQuery('#arp').val(jQuery('#arp_trabajador').val());
 						jQuery('#estado_civil').html(jQuery('#estado_civil_trabajador').val());
 						jQuery('#cant_hijos').html(jQuery('#cant_hijos_trabajador').val());
 						jQuery('#practica_religiosa').html(jQuery('#practica_religiosa_trabajador').val());

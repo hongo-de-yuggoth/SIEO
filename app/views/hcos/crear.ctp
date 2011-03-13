@@ -175,7 +175,7 @@ echo $this->Html->script(array
 							<td width="210"><div id="eps"></div></td>
 							<td width="15"></td>
 							<td width="40" class="subtitulo">ARP:</td>
-							<td width="*"><div id="arp"></div></td>
+							<td width="*"><input id="arp" name="data[Hco][arp]" style="width:210px;" maxlength="50" /></td>
 						</tr>
 					</tbody></table>
 				</fieldset>
