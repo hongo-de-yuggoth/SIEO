@@ -44,6 +44,64 @@ function limpiar_hco()
 
 //--------------------------------------------------------------------------
 
+function borrar_div_ant_lab()
+{
+	ac = parseInt(jQuery('#antecedentes_counter').val());
+	
+	// Se identifica el DIV padre (contenedor) y el indice del DIV a borrar.
+	id_div_padre = '#'+jQuery(this).closest('div').attr('id');
+	splitaso = id_div_padre.split('-');
+	indice_div = parseInt(splitaso[1]);
+	
+	// En caso de que sea el último DIV simplemente lo eliminamos.
+	if ( indice_div === ac )
+	{
+		jQuery(id_div_padre).remove();
+		jQuery('#antecedentes_counter').val(--ac);
+	}
+	else
+	{
+		// Cambiamos el id del DIV padre
+		id_div_borrar = 'div_para_borrar';
+		jQuery(id_div_padre).attr('id', id_div_borrar);
+		id_div_borrar = '#'+id_div_borrar;
+	
+		// Reseteamos los ids de dicho nodo.
+		jQuery
+		(
+			'#a'+indice_div+'_indice_titulo, '+
+			'#boton_borrar_antecedente-'+indice_div+', '+
+			id_div_borrar+' input[type="text"], '+
+			id_div_borrar+' input[type="checkbox"]'
+		).removeAttr('id');
+		
+		while ( indice_div <= ac )
+		{
+			// Se renombran los id con el indice nuevo, nodo a nodo DIV.
+			indice = indice_div + 1;
+			jQuery('#ant_lab-'+indice).attr('id', 'ant_lab-'+indice_div);
+			jQuery('#a'+indice+'_indice_titulo').html(indice_div).attr('id', 'a'+indice_div+'_indice_titulo');
+			jQuery('#boton_borrar_antecedente-'+indice).attr('id', 'boton_borrar_antecedente-'+indice_div);
+			jQuery('#a'+indice+'_empresa_sector').attr('id', 'a'+indice_div+'_empresa_sector');
+			jQuery('#a'+indice+'_cargo').attr('id', 'a'+indice_div+'_cargo');
+			jQuery('#r'+indice+'_fis').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_fis');
+			jQuery('#r'+indice+'_qui').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_qui');
+			jQuery('#r'+indice+'_mec').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_mec');
+			jQuery('#r'+indice+'_erg').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_erg');
+			jQuery('#r'+indice+'_psi').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_psi');
+			jQuery('#r'+indice+'_alt').attr('name', 'riesgos_'+indice_div).attr('id', 'r'+indice_div+'_alt');
+			jQuery('#a'+indice+'_tiempo_exposicion').attr('name', 'riesgos_'+indice_div).attr('id', 'a'+indice_div+'_tiempo_exposicion');
+			indice_div++;
+		}
+		
+		jQuery('#antecedentes_counter').val(--ac);
+		jQuery(id_div_borrar).remove();
+	}
+	return false;
+}
+	
+//-----------------------------------------------------------------------------
+
 jQuery(document).ready(function()
 {
 	// Configuración inicial
@@ -182,6 +240,86 @@ jQuery(document).ready(function()
 		}
 	});
 
+	//--------------------------------------------------------------------------
+	
+	jQuery('#boton_agregar_antecedente').click(function ()
+	{
+		// Antecedentes Counter.
+		ac = parseInt(jQuery('#antecedentes_counter').val());
+		if ( ac < 3 )
+		{
+			++ac;
+			div_ant_lab =
+			'<div id="ant_lab-'+ac+'" class="caja_fondo">'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top">'+
+						'<td width="*" class="subtitulo">Antecedente Laboral #<span id="a'+ac+'_indice_titulo">'+ac+'</span></td>'+
+						'<td width="33px">'+
+							'<a id="boton_borrar_antecedente-'+ac+'" class="borrar-ant-lab" href="" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Borrar este antecedente">'+
+								'<img class="no-border" src="/img/borrar.png" align="right" />'+
+							'</a>'+
+						'</td>'+
+					'</tr>'+
+				'</tbody></table>'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top" align="left">'+
+						'<td width="115" class="subtitulo">Empresa/Sector:</td>'+
+						'<td width="190"><input type="text" id="a'+ac+'_empresa_sector" name="data['+ac+'][Antecedentelaboral][empresa_sector]" maxlength="50" style="width:190px;" /></td>'+
+						'<td width="20"></td>'+
+						'<td width="48" class="subtitulo">Cargo:</td>'+
+						'<td width="*"><input type="text" id="a'+ac+'_cargo" name="data['+ac+'][Antecedentelaboral][cargo]" maxlength="50" style="width:158px;" /></td>'+
+					'</tr>'+
+				'</tbody></table>'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top" align="left">'+
+						'<td width="70" class="subtitulo">Riesgos:</td>'+
+						'<td width="100">'+
+							'<input id="r'+ac+'_fis" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_fis" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_fis" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">F&iacute;sico</label>'+
+						'</td>'+
+						'<td width="15"></td>'+
+						'<td width="100">'+
+							'<input id="r'+ac+'_qui" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_qui" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_qui" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Qu&iacute;mico</label>'+
+						'</td>'+
+						'<td width="15"></td>'+
+						'<td width="100">'+
+							'<input id="r'+ac+'_mec" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_mec" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_mec" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Mec&aacute;nico</label>'+
+						'</td>'+
+						'<td width="15"></td>'+
+						'<td width="*">'+
+							'<input id="r'+ac+'_erg" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_erg" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_erg" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ergon&oacute;mico</label>'+
+						'</td>'+
+					'</tr>'+
+					'<tr valign="top" align="left">'+
+						'<td></td>'+
+						'<td width="100">'+
+							'<input id="r'+ac+'_psi" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_psi" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_psi" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Psicosocial</label>'+
+						'</td>'+
+						'<td width="15"></td>'+
+						'<td width="*" colspan="5">'+
+							'<input id="r'+ac+'_alt" type="checkbox" checked="checked" name="riesgos_'+ac+'" value="r_alt" style="vertical-align:bottom;" />'+
+							'<label for="r'+ac+'_alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Seguridad:&nbsp;Alturas locativo</label>'+
+						'</td>'+
+					'</tr>'+
+				'</tbody></table>'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top" align="left">'+
+						'<td width="150" class="subtitulo">Tiempo de exposici&oacute;n:</td>'+
+						'<td width="*"><input type="text" id="a'+ac+'_tiempo_exposicion" name="data['+ac+'][Antecedentelaboral][tiempo_exposicion]" maxlength="4" style="width:27px;" /> años.</td>'+
+					'</tr>'+
+				'</tbody></table>'+
+			'</div>';
+			jQuery('#divs_ant_lab').append(div_ant_lab);		// Creamos el DIV de Ant Lab
+			jQuery('#boton_borrar_antecedente-'+ac).click(borrar_div_ant_lab);
+			jQuery('#antecedentes_counter').val(ac);
+		}
+		return false;
+	});
+	
 	//--------------------------------------------------------------------------
 	
 	jQuery('#crear_hco').submit(function()

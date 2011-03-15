@@ -8,7 +8,7 @@
 	<?php echo $this->Html->css(array('plantilla', 'login_box')); ?>
 	<?php echo $this->Html->script(array
 	(
-		'jquery1.4.4',
+		'jquery-1.5.1',
 		'users/login'
 	)); ?>
 	<?php echo $scripts_for_layout; ?>

@@ -63,7 +63,7 @@ echo $this->Html->script(array
 	</div>
 	
 	<!-- SECCION: FORMULARIO HISTORIA CLINICA -->
-	<div id="hco" style="display:none;">
+	<div id="hco" style="display:block;">
 		<div id="historico_hco" style="display:block;">
 			<h2>Hist&oacute;rico de HCOs</h2>
 			<ul>
@@ -99,10 +99,12 @@ echo $this->Html->script(array
 					</tbody></table>
 				</fieldset>
 			</div>
-			<div>
+			
+			<fieldset>
+				<legend><b>&nbsp;Datos del Trabajador&nbsp;</b></legend>
 				<table width="100%"><tbody>
 					<tr align="left">
-						<td width="132" class="subtitulo">Nombre trabajador:</td>
+						<td width="132" class="subtitulo">Nombre:</td>
 						<td width="*"><div id="nombre"></div></td>
 					</tr>
 				</tbody></table>
@@ -165,79 +167,80 @@ echo $this->Html->script(array
 						<td width="*"><div id="nivel_estudio"></div></td>
 					</tr>
 				</tbody></table>
-				<fieldset>
-					<legend><b>&nbsp;Seguridad social&nbsp;</b></legend>
-					<table width="100%"><tbody>
-						<tr valign="top" align="left">
-							<td width="40" class="subtitulo">EPS:</td>
-							<td width="210"><input id="eps" name="data[Trabajador][eps]" style="width:210px;" maxlength="50" /></td>
-							<td width="15"></td>
-							<td width="40" class="subtitulo">ARP:</td>
-							<td width="*"><input id="arp" name="data[Hco][arp]" style="width:210px;" maxlength="50" /></td>
-						</tr>
-					</tbody></table>
-				</fieldset>
-				<fieldset>
-					<legend><b>&nbsp;Datos socio-demogr&aacute;ficos&nbsp;</b></legend>
-					<table width="100%"><tbody>
-						<tr valign="top" align="left">
-							<td width="120" class="subtitulo">Estado civil:</td>
-							<td width="210">
-								<select id="estado_civil" name="data[Trabajador][id_estado_civil]" style="width:215px;">
-								<?php echo $estados_civiles; ?>
-								</select>
-							</td>
-							<td width="10"></td>
-							<td width="100" class="subtitulo">Cant. de hijos:</td>
-							<td width="*"><div id="cant_hijos"></div></td>
-						</tr>
-						<tr valign="top" align="left">
-							<td width="120" class="subtitulo">Pr&aacute;ctica religiosa:</td>
-							<td width="*" colspan="4">
-								<select id="practica_religiosa" name="data[Trabajador][id_religion]" style="width:124px;">
-								<?php echo $religiones; ?>
-								</select>
-							</td>
-						</tr>
-					</tbody></table>
-				</fieldset>
+			</fieldset>
+			
+			<fieldset>
+				<legend><b>&nbsp;Seguridad social&nbsp;</b></legend>
 				<table width="100%"><tbody>
 					<tr valign="top" align="left">
-						<td width="122" class="subtitulo">Tipo de examen:</td>
-						<td width="100">
-							<input id="ing" type="checkbox" name="tipo_examen" value="ing" style="vertical-align:bottom;" />
-							<label for="ing" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ingreso</label>
-						</td>
+						<td width="40" class="subtitulo">EPS:</td>
+						<td width="210"><input id="eps" name="data[Trabajador][eps]" style="width:210px;" maxlength="50" /></td>
 						<td width="15"></td>
-						<td width="100">
-							<input id="per" type="checkbox" name="tipo_examen" value="per" style="vertical-align:bottom;" />
-							<label for="per" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Periodico</label>
-						</td>
-						<td width="15"></td>
-						<td width="*">
-							<input id="egr" type="checkbox" name="tipo_examen" value="egr" style="vertical-align:bottom;" />
-							<label for="egr" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Egreso</label>
-						</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td width="122"></td>
-						<td width="100">
-							<input id="esp" type="checkbox" name="tipo_examen" value="esp" style="vertical-align:bottom;" />
-							<label for="esp" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Especial</label>
-						</td>
-						<td width="15"></td>
-						<td width="*" colspan="3">
-							<input id="alt" type="checkbox" name="tipo_examen" value="alt" style="vertical-align:bottom;" />
-							<label for="alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Alturas</label>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td width="*" colspan="5" class="texto-error" valign="top"><div id="error_tipo_examen" style="display:none;" /></td>
+						<td width="40" class="subtitulo">ARP:</td>
+						<td width="*"><input id="arp" name="data[Hco][arp]" style="width:210px;" maxlength="50" /></td>
 					</tr>
 				</tbody></table>
-			</div>
+			</fieldset>
+			<fieldset>
+				<legend><b>&nbsp;Datos socio-demogr&aacute;ficos&nbsp;</b></legend>
+				<table width="100%"><tbody>
+					<tr valign="top" align="left">
+						<td width="120" class="subtitulo">Estado civil:</td>
+						<td width="210">
+							<select id="estado_civil" name="data[Trabajador][id_estado_civil]" style="width:215px;">
+							<?php echo $estados_civiles; ?>
+							</select>
+						</td>
+						<td width="10"></td>
+						<td width="100" class="subtitulo">Cant. de hijos:</td>
+						<td width="*"><div id="cant_hijos"></div></td>
+					</tr>
+					<tr valign="top" align="left">
+						<td width="120" class="subtitulo">Pr&aacute;ctica religiosa:</td>
+						<td width="*" colspan="4">
+							<select id="practica_religiosa" name="data[Trabajador][id_religion]" style="width:124px;">
+							<?php echo $religiones; ?>
+							</select>
+						</td>
+					</tr>
+				</tbody></table>
+			</fieldset>
 			
+			<table width="100%"><tbody>
+				<tr valign="top" align="left">
+					<td width="122" class="subtitulo">Tipo de examen:</td>
+					<td width="100">
+						<input id="ing" type="checkbox" name="tipo_examen" value="ing" style="vertical-align:bottom;" />
+						<label for="ing" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ingreso</label>
+					</td>
+					<td width="15"></td>
+					<td width="100">
+						<input id="per" type="checkbox" name="tipo_examen" value="per" style="vertical-align:bottom;" />
+						<label for="per" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Periodico</label>
+					</td>
+					<td width="15"></td>
+					<td width="*">
+						<input id="egr" type="checkbox" name="tipo_examen" value="egr" style="vertical-align:bottom;" />
+						<label for="egr" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Egreso</label>
+					</td>
+				</tr>
+				<tr valign="top" align="left">
+					<td width="122"></td>
+					<td width="100">
+						<input id="esp" type="checkbox" name="tipo_examen" value="esp" style="vertical-align:bottom;" />
+						<label for="esp" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Especial</label>
+					</td>
+					<td width="15"></td>
+					<td width="*" colspan="3">
+						<input id="alt" type="checkbox" name="tipo_examen" value="alt" style="vertical-align:bottom;" />
+						<label for="alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Alturas</label>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td width="*" colspan="5" class="texto-error" valign="top"><div id="error_tipo_examen" style="display:none;" /></td>
+				</tr>
+			</tbody></table>
 		</fieldset>
 		
 		<table width="100%"><tbody>
@@ -382,195 +385,74 @@ echo $this->Html->script(array
 		<!-- ANTECEDENTES LABORALES -->
 		<fieldset id="antecedentes_laborales">
 			<legend><b>&nbsp;Antecedentes laborales&nbsp;</b></legend>
-			<div style="vertical-align:middle; width:60px; height:50px; text-align:center; margin-bottom:5px;" >
-				<a id="boton_agregar_antecedente" href="#" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Agregar otro antecedente">
+			<input id="antecedentes_counter" type="hidden" value="1" />
+			<div style="vertical-align:middle; width:60px; text-align:center;" >
+				<a id="boton_agregar_antecedente" href="" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Agregar otro antecedente">
 					<table><tbody>
-						<tr><td><img class="no-border" src="/img/agregar.png" align="center" /></td></tr>
-						<tr><td>AGREGAR</td></tr>
+						<tr>
+							<td><img class="no-border" src="/img/agregar.png" align="center" /></td>
+							<td>AGREGAR</td>
+						</tr>
 					</tbody></table>
 				</a>
 			</div>
-			<div id="ant_lab_1" class="caja_fondo">
-				<table width="100%"><tbody>
-					<tr valign="top">
-						<td id="titulo_ant_lab_1" width="100%" height="32" colspan="5" class="subtitulo">Antecedente Laboral #1</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td width="115" class="subtitulo">Empresa/Sector:</td>
-						<td width="190"><input type="text" id="a1_empresa_sector" name="data[1][Antecedentelaboral][empresa_sector]" maxlength="50" style="width:190px;" /></td>
-						<td width="20"></td>
-						<td width="48" class="subtitulo">Cargo:</td>
-						<td width="*"><input type="text" id="a1_cargo" name="data[1][Antecedentelaboral][cargo]" maxlength="50" style="width:158px;" /></td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="70" class="subtitulo">Riesgos:</td>
-						<td width="100">
-							<input id="r1_fis" type="checkbox" checked="checked" name="riesgos_1" value="r_fis" style="vertical-align:bottom;" />
-							<label for="r1_fis" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">F&iacute;sico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r1_qui" type="checkbox" checked="checked" name="riesgos_1" value="r_qui" style="vertical-align:bottom;" />
-							<label for="r1_qui" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Qu&iacute;mico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r1_mec" type="checkbox" checked="checked" name="riesgos_1" value="r_mec" style="vertical-align:bottom;" />
-							<label for="r1_mec" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Mec&aacute;nico</label>
-						</td>
-						<td width="15"></td>
-						<td width="*">
-							<input id="r1_erg" type="checkbox" checked="checked" name="riesgos_1" value="r_erg" style="vertical-align:bottom;" />
-							<label for="r1_erg" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ergon&oacute;mico</label>
-						</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td></td>
-						<td width="100">
-							<input id="r1_psi" type="checkbox" checked="checked" name="riesgos_1" value="r_psi" style="vertical-align:bottom;" />
-							<label for="r1_psi" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Psicosocial</label>
-						</td>
-						<td width="15"></td>
-						<td width="*" colspan="5">
-							<input id="r1_alt" type="checkbox" checked="checked" name="riesgos_1" value="r_alt" style="vertical-align:bottom;" />
-							<label for="r1_alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Seguridad:&nbsp;Alturas locativo</label>
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="150" class="subtitulo">Tiempo de exposici&oacute;n:</td>
-						<td width="*"><input type="text" id="a1_tiempo_exposicion" name="data[1][Antecedentelaboral][tiempo_exposicion]" maxlength="4" style="width:27px;" /> años.</td>
-					</tr>
-				</tbody></table>
-			</div>
-			<div id="ant_lab_2" class="caja_fondo" style="display:none;">
-				<table width="100%"><tbody>
-					<tr valign="top">
-						<td id="titulo_ant_lab_2" width="*" class="subtitulo">Antecedente Laboral #2</td>
-						<td width="33px">
-							<a id="boton_borrar_antecedente_2" href="#" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Borrar este antecedente">
-								<img class="no-border" src="/img/borrar.png" align="right" />
-							</a>
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="115" class="subtitulo">Empresa/Sector:</td>
-						<td width="190"><input type="text" id="a2_empresa_sector" name="data[2][Antecedentelaboral][empresa_sector]" maxlength="50" style="width:190px;" /></td>
-						<td width="20"></td>
-						<td width="48" class="subtitulo">Cargo:</td>
-						<td width="*"><input type="text" id="a2_cargo" name="data[2][Antecedentelaboral][cargo]" maxlength="50" style="width:158px;" /></td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="70" class="subtitulo">Riesgos:</td>
-						<td width="100">
-							<input id="r2_fis" type="checkbox" checked="checked" checked="checked" name="riesgos_2" value="r_fis" style="vertical-align:bottom;" />
-							<label for="r2_fis" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">F&iacute;sico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r2_qui" type="checkbox" checked="checked" name="riesgos_2" value="r_qui" style="vertical-align:bottom;" />
-							<label for="r2_qui" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Qu&iacute;mico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r2_mec" type="checkbox" checked="checked" name="riesgos_2" value="r_mec" style="vertical-align:bottom;" />
-							<label for="r2_mec" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Mec&aacute;nico</label>
-						</td>
-						<td width="15"></td>
-						<td width="*">
-							<input id="r2_erg" type="checkbox" checked="checked" name="riesgos_2" value="r_erg" style="vertical-align:bottom;" />
-							<label for="r2_erg" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ergon&oacute;mico</label>
-						</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td></td>
-						<td width="100">
-							<input id="r2_psi" type="checkbox" checked="checked" name="riesgos_2" value="r_psi" style="vertical-align:bottom;" />
-							<label for="r2_psi" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Psicosocial</label>
-						</td>
-						<td width="15"></td>
-						<td width="*" colspan="5">
-							<input id="r2_alt" type="checkbox" checked="checked" name="riesgos_2" value="r_alt" style="vertical-align:bottom;" />
-							<label for="r2_alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Seguridad:&nbsp;Alturas locativo</label>
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="150" class="subtitulo">Tiempo de exposici&oacute;n:</td>
-						<td width="*"><input type="text" id="a2_tiempo_exposicion" name="data[2][Antecedentelaboral][tiempo_exposicion]" maxlength="4" style="width:27px;" /> años.</td>
-					</tr>
-				</tbody></table>
-			</div>
-			<div id="ant_lab_3" class="caja_fondo" style="display:none;">
-				<table width="100%"><tbody>
-					<tr valign="top">
-						<td id="titulo_ant_lab_3" width="*" class="subtitulo">Antecedente Laboral #3</td>
-						<td width="33px">
-							<a id="boton_borrar_antecedente_3" href="#" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Borrar este antecedente">
-								<img class="no-border" src="/img/borrar.png" align="right" />
-							</a>
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="115" class="subtitulo">Empresa/Sector:</td>
-						<td width="190"><input type="text" id="a3_empresa_sector" name="data[3][Antecedentelaboral][empresa_sector]" maxlength="50" style="width:190px;" /></td>
-						<td width="20"></td>
-						<td width="48" class="subtitulo">Cargo:</td>
-						<td width="*"><input type="text" id="a3_cargo" name="data[3][Antecedentelaboral][cargo]" maxlength="50" style="width:158px;" /></td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="70" class="subtitulo">Riesgos:</td>
-						<td width="100">
-							<input id="r3_fis" type="checkbox" checked="checked" name="riesgos_3" value="r_fis" style="vertical-align:bottom;" />
-							<label for="r3_fis" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">F&iacute;sico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r3_qui" type="checkbox" checked="checked" name="riesgos_3" value="r_qui" style="vertical-align:bottom;" />
-							<label for="r3_qui" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Qu&iacute;mico</label>
-						</td>
-						<td width="15"></td>
-						<td width="100">
-							<input id="r3_mec" type="checkbox" checked="checked" name="riesgos_3" value="r_mec" style="vertical-align:bottom;" />
-							<label for="r3_mec" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Mec&aacute;nico</label>
-						</td>
-						<td width="15"></td>
-						<td width="*">
-							<input id="r3_erg" type="checkbox" checked="checked" name="riesgos_3" value="r_erg" style="vertical-align:bottom;" />
-							<label for="r3_erg" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ergon&oacute;mico</label>
-						</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td></td>
-						<td width="100">
-							<input id="r3_psi" type="checkbox" checked="checked" name="riesgos_3" value="r_psi" style="vertical-align:bottom;" />
-							<label for="r3_psi" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Psicosocial</label>
-						</td>
-						<td width="15"></td>
-						<td width="*" colspan="5">
-							<input id="r3_alt" type="checkbox" checked="checked" name="riesgos_3" value="r_alt" style="vertical-align:bottom;" />
-							<label for="r3_alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Seguridad:&nbsp;Alturas locativo</label>
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="150" class="subtitulo">Tiempo de exposici&oacute;n:</td>
-						<td width="*"><input type="text" id="a3_tiempo_exposicion" name="data[3][Antecedentelaboral][tiempo_exposicion]" maxlength="4" style="width:27px;" /> años.</td>
-					</tr>
-				</tbody></table>
+			<div id="divs_ant_lab">
+				<div id="ant_lab-1" class="caja_fondo">
+					<table width="100%"><tbody>
+						<tr valign="top">
+							<td width="100%" height="32" colspan="5" class="subtitulo">Antecedente Laboral #1</td>
+						</tr>
+						<tr valign="top" align="left">
+							<td width="115" class="subtitulo">Empresa/Sector:</td>
+							<td width="190"><input type="text" id="a1_empresa_sector" name="data[1][Antecedentelaboral][empresa_sector]" maxlength="50" style="width:190px;" /></td>
+							<td width="20"></td>
+							<td width="48" class="subtitulo">Cargo:</td>
+							<td width="*"><input type="text" id="a1_cargo" name="data[1][Antecedentelaboral][cargo]" maxlength="50" style="width:158px;" /></td>
+						</tr>
+					</tbody></table>
+					<table width="100%"><tbody>
+						<tr valign="top" align="left">
+							<td width="70" class="subtitulo">Riesgos:</td>
+							<td width="100">
+								<input id="r1_fis" type="checkbox" checked="checked" name="riesgos_1" value="r_fis" style="vertical-align:bottom;" />
+								<label for="r1_fis" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">F&iacute;sico</label>
+							</td>
+							<td width="15"></td>
+							<td width="100">
+								<input id="r1_qui" type="checkbox" checked="checked" name="riesgos_1" value="r_qui" style="vertical-align:bottom;" />
+								<label for="r1_qui" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Qu&iacute;mico</label>
+							</td>
+							<td width="15"></td>
+							<td width="100">
+								<input id="r1_mec" type="checkbox" checked="checked" name="riesgos_1" value="r_mec" style="vertical-align:bottom;" />
+								<label for="r1_mec" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Mec&aacute;nico</label>
+							</td>
+							<td width="15"></td>
+							<td width="*">
+								<input id="r1_erg" type="checkbox" checked="checked" name="riesgos_1" value="r_erg" style="vertical-align:bottom;" />
+								<label for="r1_erg" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Ergon&oacute;mico</label>
+							</td>
+						</tr>
+						<tr valign="top" align="left">
+							<td></td>
+							<td width="100">
+								<input id="r1_psi" type="checkbox" checked="checked" name="riesgos_1" value="r_psi" style="vertical-align:bottom;" />
+								<label for="r1_psi" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Psicosocial</label>
+							</td>
+							<td width="15"></td>
+							<td width="*" colspan="5">
+								<input id="r1_alt" type="checkbox" checked="checked" name="riesgos_1" value="r_alt" style="vertical-align:bottom;" />
+								<label for="r1_alt" style="display:inline; font-weight:normal;margin:0px; vertical-align:bottom;">Seguridad:&nbsp;Alturas locativo</label>
+							</td>
+						</tr>
+					</tbody></table>
+					<table width="100%"><tbody>
+						<tr valign="top" align="left">
+							<td width="150" class="subtitulo">Tiempo de exposici&oacute;n:</td>
+							<td width="*"><input type="text" id="a1_tiempo_exposicion" name="data[1][Antecedentelaboral][tiempo_exposicion]" maxlength="4" style="width:27px;" /> años.</td>
+						</tr>
+					</tbody></table>
+				</div>
 			</div>
 		</fieldset>
 		

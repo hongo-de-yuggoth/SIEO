@@ -6,7 +6,8 @@
 	<?php echo $this->Html->charset(); ?>
 	<?php echo $this->Html->meta('Author', 'Nestor Antonio Cardona - nestorkardona@gmail.com'); ?>
 	<?php echo $this->Html->css(array('plantilla', 'login_box')); ?>
-	<?php echo $this->Html->script(array('jquery1.4.4')); ?>
+	<?php //echo $this->Html->script(array('jquery1.4.4')); ?>
+	<?php echo $this->Html->script(array('jquery-1.5.1')); ?>
 	<?php echo $scripts_for_layout; ?>
 </head>
 
