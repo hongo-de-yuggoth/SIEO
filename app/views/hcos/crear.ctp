@@ -308,7 +308,7 @@ echo $this->Html->script(array
 					<td width="*" colspan="5"><input type="text" id="ant_inmunologico" name="data[Antecedente][inmunologico]" style="width:433px;" maxlength="200" /></td>
 				</tr>
 			</tbody></table>
-			<div id="ginecoobstetrico" style="display:none;">
+			<div id="ginecoobstetrico" style="display:block;">
 				<table width="100%"><tbody>
 					<tr align="left">
 						<td width="130" class="subtitulo">Gineco-Obst&eacute;trico:</td>
@@ -324,8 +324,8 @@ echo $this->Html->script(array
 					<tr align="left">
 						<td width="130"></td>
 						<td width="*">
-							FUM: <input id="fecha_nacimiento" name='data[Antecedente][gin_fum]' type='hidden' value='' />
-							<select id="fecha_dia" name="fecha_dia" class="fecha_dia">
+							FUM: <input id="gin_fum" name='data[Antecedente][gin_fum]' type='hidden' value='' />
+							<select id="fum_dia" name="fum_dia" class="fecha_dia">
 								<option value="day">D&iacute;a</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -359,7 +359,7 @@ echo $this->Html->script(array
 								<option value="30">30</option>
 								<option value="31">31</option>
 							 </select>
-							<select id="fecha_mes" name="fecha_mes" class="fecha_mes">
+							<select id="fum_mes" name="fum_mes" class="fecha_mes">
 							  <option value="-1">Mes</option>
 							  <option value="1">Enero</option>
 							  <option value="2">Febrero</option>
@@ -375,7 +375,7 @@ echo $this->Html->script(array
 							  <option value="12">Diciembre</option>
 							</select>
 				 
-							<input type="text" class="w3em" id="fecha_anio" name="fecha_anio" size="3" maxlength="4" />
+							<input type="text" class="w3em" id="fum_anio" name="fum_anio" size="3" maxlength="4" />
 						</td>
 					</tr>
 				</tbody></table>
@@ -459,89 +459,97 @@ echo $this->Html->script(array
 		<!-- ACCIDENTES DE TRABAJO -->
 		<fieldset>
 			<legend><b>&nbsp;Accidentes de Trabajo&nbsp;</b></legend>
-			<div style="vertical-align:middle; width:60px; height:50px; text-align:center; margin-bottom:5px;" >
-				<a id="boton_agregar_accidente" href="#" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Agregar otra accidente">
+			<input id="accidentes_counter" type="hidden" value="1" />
+			<div style="vertical-align:middle; width:60px; text-align:center;" >
+				<a id="boton_agregar_accidente" href="" style="text-decoration:none; color:#666666; font-weight:bold; font-size:9px;" title="Agregar otra accidente">
 					<table><tbody>
-						<tr><td><img class="no-border" src="/img/agregar.png" align="center" /></td></tr>
-						<tr><td>AGREGAR</td></tr>
+						<tr>
+							<td><img class="no-border" src="/img/agregar.png" align="center" /></td>
+							<td>AGREGAR</td>
+						</tr>
 					</tbody></table>
 				</a>
 			</div>
-			<div id="accidente_1" class="caja_fondo">
-				<table width="100%"><tbody>
-					<tr valign="top">
-						<td id="titulo_acc_1" width="100%" height="32" colspan="4" class="subtitulo">Accidente de Trabajo #1</td>
-					</tr>
-					<tr valign="top" align="left">
-						<td width="60" class="subtitulo">Empresa:</td>
-						<td width="180"><input type="text" id="ac1_empresa" name="accidentes[0][Accidentetrabajo][empresa]" maxlength="50" style="width:180px;" /></td>
-						<td width="48" class="subtitulo">Fecha:</td>
-						<td width="*">
-							<input id="fecha_accidente_1" name='accidentes[0][Accidentetrabajo][fecha]' type='hidden' value='' />
-							<select id="ac1_fecha_dia" name="ac1_fecha_dia" class="fecha_dia">
-								<option value="day">D&iacute;a</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-								<option value="31">31</option>
-							 </select>
-							<select id="ac1_fecha_mes" name="ac1_fecha_mes" class="fecha_mes">
-							  <option value="-1">Mes</option>
-							  <option value="1">Enero</option>
-							  <option value="2">Febrero</option>
-							  <option value="3">Marzo</option>
-							  <option value="4">Abril</option>
-							  <option value="5">Mayo</option>
-							  <option value="6">Junio</option>
-							  <option value="7">Julio</option>
-							  <option value="8">Agosto</option>
-							  <option value="9">Septiembre</option>
-							  <option value="10">Octubre</option>
-							  <option value="11">Noviembre</option>
-							  <option value="12">Diciembre</option>
-							</select>
-				 
-							<input type="text" class="w3em" id="ac1_fecha_anio" name="ac1_fecha_anio" size="3" maxlength="4" />
-						</td>
-					</tr>
-				</tbody></table>
-				<table width="100%"><tbody>
-					<tr valign="top" align="left">
-						<td width="65" class="subtitulo">Lesi&oacute;n:</td>
-						<td width="*"><input type="text" id="ac1_lesion" name="accidentes[0][Accidentetrabajo][lesion]" maxlength="200" style="width:485px;" /></td>
-					</tr>
-					<tr valign="top" align="left">
-						<td class="subtitulo">Secuelas:</td>
-						<td width="*"><input type="text" id="ac1_secuelas" name="accidentes[0][Accidentetrabajo][secuelas]" maxlength="200" style="width:485px;" /></td>
-					</tr>
-				</tbody></table>
+			<div id="div_accidentes">
+				<div id="accidente-1" class="caja_fondo">
+					<table width="100%"><tbody>
+						<tr valign="top">
+							<td width="*" height="32" class="subtitulo">Accidente de Trabajo #1</td>
+							<td width="33px"></td>
+						</tr>
+					</tbody></table>
+					<table width="100%"><tbody>
+						<tr valign="top" align="left">
+							<td width="65" class="subtitulo">Empresa:</td>
+							<td width="220"><input id="ac_empresa-1" type="text" name="accidentes[0][Accidentetrabajo][empresa]" maxlength="50" style="width:180px;" /></td>
+							<td width="48" class="subtitulo">Fecha:</td>
+							<td width="*">
+								<input id="fecha_accidente-1" name='accidentes[0][Accidentetrabajo][fecha]' type='hidden' value='' />
+								<select id="ac_dia-1" name="ac_dia-1" class="fecha_dia">
+									<option value="day">D&iacute;a</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								 </select>
+								<select id="ac_mes-1" name="ac_mes-1" class="fecha_mes">
+								  <option value="-1">Mes</option>
+								  <option value="1">Enero</option>
+								  <option value="2">Febrero</option>
+								  <option value="3">Marzo</option>
+								  <option value="4">Abril</option>
+								  <option value="5">Mayo</option>
+								  <option value="6">Junio</option>
+								  <option value="7">Julio</option>
+								  <option value="8">Agosto</option>
+								  <option value="9">Septiembre</option>
+								  <option value="10">Octubre</option>
+								  <option value="11">Noviembre</option>
+								  <option value="12">Diciembre</option>
+								</select>
+					 
+								<input id="ac_anio-1" name="ac_anio-1" type="text" class="w3em" size="3" maxlength="4" />
+							</td>
+						</tr>
+					</tbody></table>
+					<table width="100%"><tbody>
+						<tr valign="top" align="left">
+							<td width="65" class="subtitulo">Lesi&oacute;n:</td>
+							<td width="*"><input type="text" id="ac_lesion-1" name="accidentes[0][Accidentetrabajo][lesion]" maxlength="200" style="width:485px;" /></td>
+						</tr>
+						<tr valign="top" align="left">
+							<td class="subtitulo">Secuelas:</td>
+							<td width="*"><input type="text" id="ac_secuelas-1" name="accidentes[0][Accidentetrabajo][secuelas]" maxlength="200" style="width:485px;" /></td>
+						</tr>
+					</tbody></table>
+				</div>
 			</div>
 		</fieldset>
 		

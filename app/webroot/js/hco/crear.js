@@ -102,6 +102,73 @@ function borrar_div_ant_lab()
 	
 //-----------------------------------------------------------------------------
 
+function borrar_div_accidente()
+{
+	ac = parseInt(jQuery('#accidentes_counter').val());
+	
+	// Se identifica el DIV padre (contenedor) y el indice del DIV a borrar.
+	id_div_padre = '#'+jQuery(this).closest('div').attr('id');
+	splitaso = id_div_padre.split('-');
+	indice_div = parseInt(splitaso[1]);
+	
+	// En caso de que sea el último DIV simplemente lo eliminamos.
+	if ( indice_div === ac )
+	{
+		
+		jQuery(id_div_padre).remove();
+		jQuery('#accidentes_counter').val(--ac);
+	}
+	else
+	{
+		// Cambiamos el id del DIV padre
+		id_div_borrar = 'div_para_borrar';
+		jQuery(id_div_padre).attr('id', id_div_borrar);
+		id_div_borrar = '#'+id_div_borrar;
+		
+		// Reseteamos los ids de dicho nodo.
+		jQuery
+		(
+			'#ac_indice_titulo-'+indice_div+', '+
+			'#boton_borrar_accidente-'+indice_div+', '+
+			id_div_borrar+' input[type="text"], '+
+			id_div_borrar+' input[type="hidden"], '+
+			id_div_borrar+' select'
+		).removeAttr('id');
+		
+		while ( indice_div < ac )
+		{
+			// Se renombran los id con el indice nuevo, nodo a nodo DIV.
+			indice = indice_div + 1;
+			datePickerController.destroyDatePicker('ac_anio-'+indice_div);
+			jQuery('#accidente-'+indice).attr('id', 'accidente-'+indice_div);
+			jQuery('#ac_indice_titulo-'+indice).html(indice_div).attr('id', 'ac_indice_titulo-'+indice_div);
+			jQuery('#boton_borrar_accidente-'+indice).attr('id', 'boton_borrar_accidente-'+indice_div);
+			jQuery('#ac_empresa-'+indice).attr('id', 'ac_empresa-'+indice_div);
+			jQuery('#fecha_accidente-'+indice).attr('id', 'fecha_accidente-'+indice_div);
+			jQuery('#ac_dia-'+indice).attr('id', 'ac_dia-'+indice_div);
+			jQuery('#ac_mes-'+indice).attr('id', 'ac_mes-'+indice_div);
+			jQuery('#ac_anio-'+indice).attr('id', 'ac_anio-'+indice_div);
+			jQuery('#ac_lesion-'+indice).attr('id', 'ac_lesion-'+indice_div);
+			jQuery('#ac_secuelas-'+indice).attr('id', 'ac_secuelas-'+indice_div);
+			
+			anio = '"ac_anio-'+indice_div+'"';
+			mes = '"ac_mes-'+indice_div+'"';
+			dia = '"ac_dia-'+indice_div+'"';
+			eval('var dp_conf = {formElements:{'+anio+':"Y",'+mes+':"n",'+dia+':"j"},showWeeks:false,noTodayButton:true,noFadeEffect:true,statusFormat:"l-cc-sp-d-sp-F-sp-Y"}');
+			datePickerController.createDatePicker(dp_conf);
+			
+			indice_div++;
+		}
+		
+		datePickerController.destroyDatePicker('ac_anio-'+indice_div);
+		jQuery('#accidentes_counter').val(--ac);
+		jQuery(id_div_borrar).remove();
+	}
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+
 jQuery(document).ready(function()
 {
 	// Configuración inicial
@@ -109,10 +176,21 @@ jQuery(document).ready(function()
 	jQuery('#nombre').keypress(config_input);
 	jQuery('#numero_documento').keypress(config_input);
 	*/
+	jQuery('#antecedentes_counter').val('1');
+	jQuery('#accidentes_counter').val('1');
 	
 	datePickerController.createDatePicker(
 	{
-		formElements:{"fecha_anio":"Y","fecha_mes":"n","fecha_dia":"j"},
+		formElements:{"fum_anio":"Y", "fum_mes":"n", "fum_dia":"j"},
+		showWeeks:false,
+		noTodayButton:true,
+		noFadeEffect:true,
+		statusFormat:"l-cc-sp-d-sp-F-sp-Y"
+	});
+	
+	datePickerController.createDatePicker(
+	{
+		formElements:{"ac_anio-1":"Y", "ac_mes-1":"n", "ac_dia-1":"j"},
 		showWeeks:false,
 		noTodayButton:true,
 		noFadeEffect:true,
@@ -143,6 +221,8 @@ jQuery(document).ready(function()
 		}
 	});
 
+	//--------------------------------------------------------------------------
+	
 	// Configuramos el botón para buscar trabajadores.
 	jQuery('#boton_buscar_trabajador').click(function()
 	{
@@ -316,6 +396,109 @@ jQuery(document).ready(function()
 			jQuery('#divs_ant_lab').append(div_ant_lab);		// Creamos el DIV de Ant Lab
 			jQuery('#boton_borrar_antecedente-'+ac).click(borrar_div_ant_lab);
 			jQuery('#antecedentes_counter').val(ac);
+		}
+		return false;
+	});
+	
+	//--------------------------------------------------------------------------
+	
+	jQuery('#boton_agregar_accidente').click(function ()
+	{
+		// Accidentes Counter.
+		ac = parseInt(jQuery('#accidentes_counter').val());
+		if ( ac < 15 )
+		{
+			++ac;
+			div_accidente =
+			'<div id="accidente-'+ac+'" class="caja_fondo">'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top">'+
+						'<td width="*" class="subtitulo">Accidente de Trabajo #<span id="ac_indice_titulo-'+ac+'">'+ac+'</span></td>'+
+						'<td width="33px"><a id="boton_borrar_accidente-'+ac+'" title="Borrar esta accidente" style="text-decoration: none; color: rgb(102, 102, 102); font-weight: bold; font-size: 9px;" href=""><img align="right" src="/img/borrar.png" class="no-border"></a></td>'+
+					'</tr>'+
+				'</tbody></table>'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top" align="left">'+
+						'<td width="65" class="subtitulo">Empresa:</td>'+
+						'<td width="220"><input id="ac_empresa-'+ac+'" type="text" name="accidentes[0][Accidentetrabajo][empresa]" maxlength="50" style="width:180px;" /></td>'+
+						'<td width="48" class="subtitulo">Fecha:</td>'+
+						'<td width="*">'+
+							'<input id="fecha_accidente-'+ac+'" name="accidentes[0][Accidentetrabajo][fecha]" type="hidden" value="" />'+
+							'<select id="ac_dia-'+ac+'" name="ac_dia-'+ac+'" class="fecha_dia">'+
+								'<option value="day">D&iacute;a</option>'+
+								'<option value="1">1</option>'+
+								'<option value="2">2</option>'+
+								'<option value="3">3</option>'+
+								'<option value="4">4</option>'+
+								'<option value="5">5</option>'+
+								'<option value="6">6</option>'+
+								'<option value="7">7</option>'+
+								'<option value="8">8</option>'+
+								'<option value="9">9</option>'+
+								'<option value="10">10</option>'+
+								'<option value="11">11</option>'+
+								'<option value="12">12</option>'+
+								'<option value="13">13</option>'+
+								'<option value="14">14</option>'+
+								'<option value="15">15</option>'+
+								'<option value="16">16</option>'+
+								'<option value="17">17</option>'+
+								'<option value="18">18</option>'+
+								'<option value="19">19</option>'+
+								'<option value="20">20</option>'+
+								'<option value="21">21</option>'+
+								'<option value="22">22</option>'+
+								'<option value="23">23</option>'+
+								'<option value="24">24</option>'+
+								'<option value="25">25</option>'+
+								'<option value="26">26</option>'+
+								'<option value="27">27</option>'+
+								'<option value="28">28</option>'+
+								'<option value="29">29</option>'+
+								'<option value="30">30</option>'+
+								'<option value="31">31</option>'+
+							'</select>'+
+							'<select id="ac_mes-'+ac+'" name="ac_mes-'+ac+'" class="fecha_mes">'+
+							  '<option value="-1">Mes</option>'+
+							  '<option value="1">Enero</option>'+
+							  '<option value="2">Febrero</option>'+
+							  '<option value="3">Marzo</option>'+
+							  '<option value="4">Abril</option>'+
+							  '<option value="5">Mayo</option>'+
+							  '<option value="6">Junio</option>'+
+							  '<option value="7">Julio</option>'+
+							  '<option value="8">Agosto</option>'+
+							  '<option value="9">Septiembre</option>'+
+							  '<option value="10">Octubre</option>'+
+							  '<option value="11">Noviembre</option>'+
+							  '<option value="12">Diciembre</option>'+
+							'</select>'+
+							'<input id="ac_anio-'+ac+'" name="ac_anio-'+ac+'" type="text" class="w3em" size="3" maxlength="4" />'+
+						'</td>'+
+					'</tr>'+
+				'</tbody></table>'+
+				'<table width="100%"><tbody>'+
+					'<tr valign="top" align="left">'+
+						'<td width="65" class="subtitulo">Lesi&oacute;n:</td>'+
+						'<td width="*"><input type="text" id="ac_lesion-'+ac+'" name="accidentes[0][Accidentetrabajo][lesion]" maxlength="200" style="width:485px;" /></td>'+
+					'</tr>'+
+					'<tr valign="top" align="left">'+
+						'<td class="subtitulo">Secuelas:</td>'+
+						'<td width="*"><input type="text" id="ac_secuelas-'+ac+'" name="accidentes[0][Accidentetrabajo][secuelas]" maxlength="200" style="width:485px;" /></td>'+
+					'</tr>'+
+				'</tbody></table>'+
+			'</div>';
+			jQuery('#div_accidentes').append(div_accidente);	// Creamos el DIV de Accidente
+			
+			// Configuramos y activamos el DatePicker de esta accidente;
+			anio = '"ac_anio-'+ac+'"';
+			mes = '"ac_mes-'+ac+'"';
+			dia = '"ac_dia-'+ac+'"';
+			eval('var dp_conf = {formElements:{'+anio+':"Y",'+mes+':"n",'+dia+':"j"},showWeeks:false,noTodayButton:true,noFadeEffect:true,statusFormat:"l-cc-sp-d-sp-F-sp-Y"}');
+			datePickerController.createDatePicker(dp_conf);
+			
+			jQuery('#boton_borrar_accidente-'+ac).click(borrar_div_accidente);
+			jQuery('#accidentes_counter').val(ac);
 		}
 		return false;
 	});
